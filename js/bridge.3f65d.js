@@ -49,7 +49,7 @@
     var items = [
       'Biên dịch không lỗi/cảnh báo',
       'Chuyển đổi 2 chiều ' + v.roundTrips + ' lần · Bảng khối lệnh khớp từng trường',
-      v.printedTextIdentical,
+      v.printedTextIdenticalCount + ' lần văn bản in ra giống hệt',
       'Biên dịch lại từ gốc khôi phục chính xác từng byte'
     ];
     if (!v.blockTableIdenticalEveryRound) items.splice(1, 1);

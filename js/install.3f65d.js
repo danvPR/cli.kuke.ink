@@ -41,10 +41,10 @@
 
     /* ---------- agent panel: all lines are in the DOM (no layout shift), revealed by a timeline ---------- */
     var rows = [
-      '<span class="al ai"><b>›</b>执行 npm install -g @kukemc/gandi-cli</span>',
-      '<span class="al ai"><b>›</b>执行 gandi --help</span>',
+      '<span class="al ai"><b>›</b>Chạy npm install -g @kukemc/gandi-cli</span>',
+      '<span class="al ai"><b>›</b>Chạy gandi --help</span>',
       '<span class="al gap"></span>'
-    ].concat(HELP.map(function (l) { return l === null ? '<span class="al ell" aria-label="以下省略">…</span>' : '<span class="al">' + GC.escape(l) + '</span>'; }));
+    ].concat(HELP.map(function (l) { return l === null ? '<span class="al ell" aria-label="Đã lược bỏ">…</span>' : '<span class="al">' + GC.escape(l) + '</span>'; }));
     rows.push('<span class="al"><i class="al-cur" aria-hidden="true"></i></span>');
     pre.innerHTML = rows.join('');
     var lines = GC.qsa('.al', pre), tl = null, played = false;
@@ -68,7 +68,7 @@
 
     /* ---------- copy the sentence (text must equal data-say exactly) ---------- */
     var txt = btn.getAttribute('data-say'), t0 = null;
-    function reset() { btn.classList.remove('is-copied', 'is-fallback'); swap('复制这句话'); live.textContent = ''; }
+    function reset() { btn.classList.remove('is-copied', 'is-fallback'); swap('Sao chép câu này'); live.textContent = ''; }
     function swap(s) {
       if (reduced) { label.textContent = s; return; }
       gsap.fromTo(label, { yPercent: 55, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.5, ease: 'expo.out' });
@@ -77,8 +77,8 @@
     btn.addEventListener('click', function () {
       copyText(txt).then(function (ok) {
         clearTimeout(t0);
-        if (ok) { btn.classList.remove('is-fallback'); btn.classList.add('is-copied'); swap('已复制 · 粘贴给你的 AI'); live.textContent = '已复制'; }
-        else { selectNode(say); btn.classList.add('is-fallback'); swap('按 Ctrl+C 复制'); live.textContent = '没能自动复制，文字已选中，请按 Ctrl+C'; }
+        if (ok) { btn.classList.remove('is-fallback'); btn.classList.add('is-copied'); swap('Đã sao chép · dán cho AI'); live.textContent = 'Đã sao chép'; }
+        else { selectNode(say); btn.classList.add('is-fallback'); swap('Nhấn Ctrl+C để sao chép'); live.textContent = 'Không thể tự động sao chép. Văn bản đã được chọn, hãy nhấn Ctrl+C'; }
         t0 = setTimeout(reset, 2400);
         replay();
       });
@@ -100,7 +100,7 @@
       }
     });
     // keyboard-scrollable preview region
-    var sc = GC.qs('.agent-scroll'); sc.setAttribute('tabindex', '0'); sc.setAttribute('role', 'region'); sc.setAttribute('aria-label', '示意面板，可横向滚动');
+    var sc = GC.qs('.agent-scroll'); sc.setAttribute('tabindex', '0'); sc.setAttribute('role', 'region'); sc.setAttribute('aria-label', 'Bảng minh họa, có thể cuộn ngang');
 
     /* ---------- hero entry: scroll here and focus the copy button ---------- */
     GC.qsa('[data-focus-copy]').forEach(function (a) {

@@ -160,12 +160,27 @@
     /* ---------- 05 gallery ---------- */
     var track = GC.qs('#gal-track');
     var picks = ['shooter', 'multi-scene', 'data-structures'];
-    var html = '<div class="g-lead"><span class="big">Blocks,<br>as text.</span><p>三段示例程序：左边是 gandi-blocks 真实渲染的积木，右边是同一段程序打印出的文本。</p></div>';
+    var galleryCopy = {
+      shooter: {
+        title: 'Trò chơi bắn súng: đạn nhân bản',
+        blurb: 'Trò chơi bắn súng từ gandi guide examples: đạn là các bản sao, tự xóa khi bay khỏi màn hình hoặc chạm kẻ địch; tất cả được dọn khi trò chơi kết thúc.'
+      },
+      'multi-scene': {
+        title: 'Nhiều bối cảnh: chuyển cảnh có tham số',
+        blurb: 'Một bối cảnh chuyển sang “Màn 2” kèm tham số; khối mũ ở bối cảnh khác đọc tham số thành biến cục bộ.'
+      },
+      'data-structures': {
+        title: 'Cấu trúc dữ liệu nâng cao: đối tượng và danh sách',
+        blurb: 'Literal đối tượng, tăng thuộc tính, push vào danh sách và kiểm tra size(), tương ứng với các khối của tiện ích mở rộng “Cấu trúc dữ liệu nâng cao”.'
+      }
+    };
+    var html = '<div class="g-lead"><span class="big">Khối,<br>dưới dạng văn bản.</span><p>Ba chương trình mẫu: bên trái là các khối được gandi-blocks kết xuất thực tế, bên phải là văn bản được in ra từ chính chương trình đó.</p></div>';
     picks.forEach(function (n) {
-      var p = P[n], idx = (D.index || []).filter(function (x) { return x.name === n; })[0] || {};
-      var code = p.dsl.split('\n').filter(function (l) { return !/^@at\(/.test(l); }).join('\n');
-      html += '<article class="g-card" data-g="' + n + '"><div class="g-vis"></div><div class="g-txt"><span class="tag">示例程序</span><h3>' + GC.escape(p.meta.title) +
-        '</h3><p>' + GC.escape(idx.blurb || '') + '</p><pre aria-hidden="true">' + code.split('\n').map(GC.hl).join('\n') + '</pre><div class="meta">' + p.meta.blockCount + ' 块 · ' + p.meta.lineCount + ' 行</div></div></article>';
+      var p = P[n];
+      var code = GC.localizeSampleCode(p.dsl).split('\n').filter(function (l) { return !/^@at\(/.test(l); }).join('\n');
+      var copy = galleryCopy[n];
+      html += '<article class="g-card" data-g="' + n + '"><div class="g-vis"></div><div class="g-txt"><span class="tag">Chương trình mẫu</span><h3>' + GC.escape(copy.title) +
+        '</h3><p>' + GC.escape(copy.blurb) + '</p><pre aria-hidden="true">' + code.split('\n').map(GC.hl).join('\n') + '</pre><div class="meta">' + p.meta.blockCount + ' khối · ' + p.meta.lineCount + ' dòng</div></div></article>';
     });
     track.innerHTML = html;
     picks.forEach(function (n) { GC.svgInto(GC.qs('[data-g="' + n + '"] .g-vis'), n); });

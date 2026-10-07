@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<?xml encoding="utf-8" ?><html lang="zh-CN">
+<?xml encoding="utf-8" ?><html lang="vi">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Gandi CLI &mdash; &#19968;&#21477;&#35805;&#65292;&#35753; AI &#20570;&#20986;&#19968;&#25972;&#27454;&#28216;&#25103;</title>
-<meta name="description" content="Gandi CLI&#65306;&#32473; AI &#29992;&#30340;&#21629;&#20196;&#34892;&#12290;&#36830;&#19978; Gandi &#32534;&#36753;&#22120;&#65292;&#29992;&#25991;&#26412;&#35835;&#12289;&#25913;&#12289;&#36816;&#34892;&#12289;&#27979;&#35797; Scratch &#20316;&#21697;&#65292;&#20195;&#30721;&#12289;&#32654;&#26415;&#12289;&#38899;&#20048;&#65292;AI &#19968;&#20010;&#20154;&#20889;&#23436;&#12290;">
+<title>Gandi CLI &mdash; Một câu nói, để AI tạo nên một trò chơi hoàn chỉnh</title>
+<meta name="description" content="Gandi CLI: giao diện dòng lệnh dành cho AI. Kết nối với trình chỉnh sửa Gandi để đọc, sửa, chạy và kiểm thử dự án Scratch bằng văn bản. AI tự viết mã, vẽ đồ họa và sáng tác nhạc.">
 <meta name="theme-color" content="#0b0a09">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%20fill='none'%3E%3Crect%20width='32'%20height='32'%20rx='9'%20fill='%230F1014'/%3E%3Cpath%20d='M8.71%2023.55A10.5%2010.5%200%201%201%2023.29%2023.55'%20stroke='%23FFE600'%20stroke-width='4.2'%20stroke-linecap='round'/%3E%3Ccircle%20cx='16'%20cy='16'%20r='3.5'%20stroke='%2312E8E0'%20stroke-width='3.2'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/tokens.13e13.css">
@@ -19,28 +19,28 @@
 <link rel="stylesheet" href="css/install.13e13.css">
 </head>
 <body>
-<a class="skip" href="#main">&#36339;&#21040;&#20869;&#23481;</a>
+<a class="skip" href="#main">Chuyển đến nội dung</a>
 <div class="progress" aria-hidden="true"></div>
 <div class="bg" aria-hidden="true"><i class="bg-base b-brown"></i><i class="bg-base b-cool"></i><div class="bg-w bg-w1"></div><div class="bg-w bg-w2"></div><div class="bg-w bg-w3"></div><div class="bg-grid"></div><div class="bg-vig"></div></div>
 <div class="grain" aria-hidden="true"></div>
 
 <div class="intro" aria-hidden="true">
-  <div class="intro-mark wordmark"><svg class="wm-lk" viewbox="0 0 566 128" fill="none" aria-hidden="true"><defs><filter id="wm-glow-a" filterunits="userSpaceOnUse" x="-40" y="-40" width="208" height="208" color-interpolation-filters="sRGB"><fegaussianblur in="SourceGraphic" stddeviation="8" result="w"></fegaussianblur><fecomponenttransfer in="w" result="w2"><fefunca type="linear" slope="0.9"></fefunca></fecomponenttransfer><fegaussianblur in="SourceGraphic" stddeviation="2.4" result="t"></fegaussianblur><fecomponenttransfer in="t" result="t2"><fefunca type="linear" slope="0.9"></fefunca></fecomponenttransfer><femerge><femergenode in="w2"></femergenode><femergenode in="t2"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter></defs><circle cx="64" cy="64" r="64" fill="#0F1014"></circle><g filter="url(#wm-glow-a)"><path d="M32.55 98.93A47 47 0 1 1 95.45 98.93" stroke="#FFE600" stroke-width="14" stroke-linecap="round"></path><circle cx="64" cy="64" r="17" stroke="#12E8E0" stroke-width="13.5"></circle></g><path d="M157.2 72.1C157.2 91.3 165.9 100.8 183.4 100.8C200.7 100.8 209.4 91.6 209.4 73.2L209.4 60.9L183.3 60.9L183.3 72.1L196.0 72.1L196.0 75.6C196.0 80.0 195.1 83.2 193.2 85.4C191.3 87.5 188.2 88.6 184.0 88.6C179.6 88.6 176.3 87.3 174.2 84.7C172.1 82.1 171.0 77.8 171.0 71.9L171.0 56.4C171.0 50.2 172.0 45.7 174.0 43.0C175.9 40.3 179.1 39.0 183.5 39.0C187.4 39.0 190.4 40.0 192.5 42.2C194.7 44.3 195.7 47.1 195.7 50.3L195.7 51.1L209.4 51.1L209.4 50.3C209.4 43.0 207.1 37.3 202.4 33.2C197.7 29.0 191.5 27.0 183.6 27.0C166.0 27.0 157.2 36.5 157.2 55.7ZM254.2 50.0C250.5 46.7 245.2 45.1 238.3 45.1C232.2 45.1 227.3 46.6 223.7 49.5C220.1 52.5 218.3 56.5 218.3 61.6L218.3 62.0L230.3 62.0L230.3 61.7C230.3 59.7 231.0 58.1 232.4 56.9C233.8 55.6 235.8 55.0 238.2 55.0C244.0 55.0 246.9 57.9 246.9 63.7L246.9 68.0L235.4 68.0C229.5 68.0 225.0 69.4 221.7 72.2C218.4 75.0 216.8 78.9 216.8 83.7C216.8 89.0 218.3 93.1 221.4 96.1C224.5 99.1 228.8 100.6 234.3 100.6C237.3 100.6 239.7 100.2 241.6 99.4C243.5 98.5 245.4 97.2 247.2 95.3L247.2 100L259.7 100L259.7 64.3C259.7 58.0 257.8 53.2 254.2 50.0ZM244.6 87.8C243.1 89.4 240.7 90.2 237.3 90.2C232.0 90.2 229.3 87.9 229.3 83.4C229.3 79.0 232.0 76.8 237.5 76.8L246.9 76.8L246.9 80.7C246.9 83.9 246.1 86.3 244.6 87.8ZM271.0 45.7L271.0 100L283.9 100L283.9 66.2C283.9 63.1 284.7 60.8 286.3 59.1C288.0 57.4 290.1 56.6 292.6 56.6C295.1 56.6 297.2 57.4 298.7 59.1C300.2 60.8 301.0 63.1 301.0 66.2L301.0 100L313.9 100L313.9 64.6C313.9 58.6 312.4 53.8 309.4 50.3C306.3 46.9 302.0 45.1 296.4 45.1C294.0 45.1 291.6 45.6 289.4 46.5C287.1 47.5 285.2 48.8 283.6 50.6L283.6 45.7ZM329.3 95.0C332.7 98.8 337.0 100.6 342.2 100.6C347.7 100.6 352.0 98.7 355.0 95.0L355.0 100L367.6 100L367.6 28L354.7 28L354.7 51.3C351.8 47.2 347.5 45.1 342.1 45.1C336.8 45.1 332.5 47.0 329.2 50.6C325.9 54.3 324.3 59.9 324.3 67.4L324.3 78.2C324.3 85.7 326.0 91.3 329.3 95.0ZM352.3 86.2C350.7 88.2 348.5 89.1 345.6 89.1C340.0 89.1 337.2 85.4 337.2 77.8L337.2 68.0C337.2 60.4 340.1 56.6 345.9 56.6C348.7 56.6 350.8 57.6 352.4 59.5C354.0 61.5 354.7 64.3 354.7 68.0L354.7 77.8C354.7 81.5 353.9 84.3 352.3 86.2ZM379.4 45.7L379.4 100L392.2 100L392.2 45.7ZM379.2 28L379.2 38.3L392.3 38.3L392.3 28Z" fill="currentColor"></path><path d="M427.5 72.1C427.5 91.3 436.2 100.8 453.7 100.8C461.7 100.8 468.0 98.8 472.6 94.6C477.1 90.5 479.4 84.6 479.4 76.8L479.4 76.1L466.0 76.1L466.0 76.9C466.0 80.6 465.0 83.4 462.9 85.5C460.9 87.6 457.9 88.6 454.0 88.6C449.6 88.6 446.4 87.3 444.3 84.7C442.3 82.0 441.3 77.8 441.3 71.9L441.3 56.4C441.3 50.2 442.2 45.7 444.2 43.0C446.2 40.3 449.4 39.0 453.8 39.0C457.7 39.0 460.7 40.0 462.8 42.2C464.9 44.3 466.0 47.3 466.0 51.0L466.0 51.6L479.7 51.6L479.7 50.9C479.7 43.3 477.3 37.4 472.7 33.2C468.0 29.0 461.7 27.0 453.9 27.0C436.3 27.0 427.5 36.5 427.5 55.7ZM490.0 28L490.0 100L535.2 100L535.2 88.1L503.7 88.1L503.7 28ZM544.5 28L544.5 100L558.1 100L558.1 28Z" fill="#12E8E0"></path></svg></div>
+  <div class="intro-mark wordmark"><img class="brand-logo" src="images/logoDANVworkshop.png" alt=""></div>
   <div class="intro-line"></div>
 </div>
 
 <header class="nav">
-  <a class="wordmark" href="#top" aria-label="Gandi CLI &#39318;&#39029;"><svg class="wm-lk" viewbox="0 0 566 128" fill="none" aria-hidden="true"><defs><filter id="wm-glow-b" filterunits="userSpaceOnUse" x="-40" y="-40" width="208" height="208" color-interpolation-filters="sRGB"><fegaussianblur in="SourceGraphic" stddeviation="8" result="w"></fegaussianblur><fecomponenttransfer in="w" result="w2"><fefunca type="linear" slope="0.9"></fefunca></fecomponenttransfer><fegaussianblur in="SourceGraphic" stddeviation="2.4" result="t"></fegaussianblur><fecomponenttransfer in="t" result="t2"><fefunca type="linear" slope="0.9"></fefunca></fecomponenttransfer><femerge><femergenode in="w2"></femergenode><femergenode in="t2"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter></defs><circle cx="64" cy="64" r="64" fill="#0F1014"></circle><g filter="url(#wm-glow-b)"><path d="M32.55 98.93A47 47 0 1 1 95.45 98.93" stroke="#FFE600" stroke-width="14" stroke-linecap="round"></path><circle cx="64" cy="64" r="17" stroke="#12E8E0" stroke-width="13.5"></circle></g><path d="M157.2 72.1C157.2 91.3 165.9 100.8 183.4 100.8C200.7 100.8 209.4 91.6 209.4 73.2L209.4 60.9L183.3 60.9L183.3 72.1L196.0 72.1L196.0 75.6C196.0 80.0 195.1 83.2 193.2 85.4C191.3 87.5 188.2 88.6 184.0 88.6C179.6 88.6 176.3 87.3 174.2 84.7C172.1 82.1 171.0 77.8 171.0 71.9L171.0 56.4C171.0 50.2 172.0 45.7 174.0 43.0C175.9 40.3 179.1 39.0 183.5 39.0C187.4 39.0 190.4 40.0 192.5 42.2C194.7 44.3 195.7 47.1 195.7 50.3L195.7 51.1L209.4 51.1L209.4 50.3C209.4 43.0 207.1 37.3 202.4 33.2C197.7 29.0 191.5 27.0 183.6 27.0C166.0 27.0 157.2 36.5 157.2 55.7ZM254.2 50.0C250.5 46.7 245.2 45.1 238.3 45.1C232.2 45.1 227.3 46.6 223.7 49.5C220.1 52.5 218.3 56.5 218.3 61.6L218.3 62.0L230.3 62.0L230.3 61.7C230.3 59.7 231.0 58.1 232.4 56.9C233.8 55.6 235.8 55.0 238.2 55.0C244.0 55.0 246.9 57.9 246.9 63.7L246.9 68.0L235.4 68.0C229.5 68.0 225.0 69.4 221.7 72.2C218.4 75.0 216.8 78.9 216.8 83.7C216.8 89.0 218.3 93.1 221.4 96.1C224.5 99.1 228.8 100.6 234.3 100.6C237.3 100.6 239.7 100.2 241.6 99.4C243.5 98.5 245.4 97.2 247.2 95.3L247.2 100L259.7 100L259.7 64.3C259.7 58.0 257.8 53.2 254.2 50.0ZM244.6 87.8C243.1 89.4 240.7 90.2 237.3 90.2C232.0 90.2 229.3 87.9 229.3 83.4C229.3 79.0 232.0 76.8 237.5 76.8L246.9 76.8L246.9 80.7C246.9 83.9 246.1 86.3 244.6 87.8ZM271.0 45.7L271.0 100L283.9 100L283.9 66.2C283.9 63.1 284.7 60.8 286.3 59.1C288.0 57.4 290.1 56.6 292.6 56.6C295.1 56.6 297.2 57.4 298.7 59.1C300.2 60.8 301.0 63.1 301.0 66.2L301.0 100L313.9 100L313.9 64.6C313.9 58.6 312.4 53.8 309.4 50.3C306.3 46.9 302.0 45.1 296.4 45.1C294.0 45.1 291.6 45.6 289.4 46.5C287.1 47.5 285.2 48.8 283.6 50.6L283.6 45.7ZM329.3 95.0C332.7 98.8 337.0 100.6 342.2 100.6C347.7 100.6 352.0 98.7 355.0 95.0L355.0 100L367.6 100L367.6 28L354.7 28L354.7 51.3C351.8 47.2 347.5 45.1 342.1 45.1C336.8 45.1 332.5 47.0 329.2 50.6C325.9 54.3 324.3 59.9 324.3 67.4L324.3 78.2C324.3 85.7 326.0 91.3 329.3 95.0ZM352.3 86.2C350.7 88.2 348.5 89.1 345.6 89.1C340.0 89.1 337.2 85.4 337.2 77.8L337.2 68.0C337.2 60.4 340.1 56.6 345.9 56.6C348.7 56.6 350.8 57.6 352.4 59.5C354.0 61.5 354.7 64.3 354.7 68.0L354.7 77.8C354.7 81.5 353.9 84.3 352.3 86.2ZM379.4 45.7L379.4 100L392.2 100L392.2 45.7ZM379.2 28L379.2 38.3L392.3 38.3L392.3 28Z" fill="currentColor"></path><path d="M427.5 72.1C427.5 91.3 436.2 100.8 453.7 100.8C461.7 100.8 468.0 98.8 472.6 94.6C477.1 90.5 479.4 84.6 479.4 76.8L479.4 76.1L466.0 76.1L466.0 76.9C466.0 80.6 465.0 83.4 462.9 85.5C460.9 87.6 457.9 88.6 454.0 88.6C449.6 88.6 446.4 87.3 444.3 84.7C442.3 82.0 441.3 77.8 441.3 71.9L441.3 56.4C441.3 50.2 442.2 45.7 444.2 43.0C446.2 40.3 449.4 39.0 453.8 39.0C457.7 39.0 460.7 40.0 462.8 42.2C464.9 44.3 466.0 47.3 466.0 51.0L466.0 51.6L479.7 51.6L479.7 50.9C479.7 43.3 477.3 37.4 472.7 33.2C468.0 29.0 461.7 27.0 453.9 27.0C436.3 27.0 427.5 36.5 427.5 55.7ZM490.0 28L490.0 100L535.2 100L535.2 88.1L503.7 88.1L503.7 28ZM544.5 28L544.5 100L558.1 100L558.1 28Z" fill="#12E8E0"></path></svg></a>
-  <nav aria-label="&#39029;&#38754;&#23548;&#33322;"><ul>
+  <a class="wordmark" href="#top" aria-label="Trang chủ DANVworkshop"><img class="brand-logo" src="images/logoDANVworkshop.png" alt=""></a>
+  <nav aria-label="Điều hướng trang"><ul>
     <li><a class="ulink" href="#bridge">DSL</a></li>
-    <li><a class="ulink" href="#caps">&#33021;&#21147;</a></li>
-    <li><a class="ulink" href="#flow">&#27969;&#31243;</a></li>
-    <li><a class="ulink" href="#install">&#23433;&#35013;</a></li>
+    <li><a class="ulink" href="#caps">Tính năng</a></li>
+    <li><a class="ulink" href="#flow">Quy trình</a></li>
+    <li><a class="ulink" href="#install">Cài đặt</a></li>
   </ul></nav>
   <div class="nav-r">
-    <a class="ulink hide-s" href="https://gandi.kuke.ink/editor/" target="_blank" rel="noopener">&#32534;&#36753;&#22120; &#8599;</a>
+    <a class="ulink hide-s" href="https://gandi.kuke.ink/editor/" target="_blank" rel="noopener">Trình chỉnh sửa &#8599;</a>
     <a class="ulink hide-s" href="https://www.npmjs.com/package/@kukemc/gandi-cli" target="_blank" rel="noopener">npm &#8599;</a>
-    <a class="pill" href="#install">&#23433;&#35013;</a>
+    <a class="pill" href="#install">Cài đặt</a>
   </div>
 </header>
 
@@ -49,30 +49,31 @@
 <!-- ================= HERO ================= -->
 <section class="hero" id="top">
   <div class="spot" aria-hidden="true"></div>
+  <p class="announcement"><span class="announcement-dot" aria-hidden="true"></span>Một hệ thống AI sẽ sớm triển khai tại DANVworkshop</p>
   <div class="hero-grid wrap">
     <div class="hero-l">
-      <p class="eyebrow" data-reveal><b>Gandi CLI</b><span class="rule"></span><span>Let AI build Scratch projects</span></p>
-      <h1 class="mega" id="hero-title">&#19968;&#21477;&#35805;&#65292;<br>&#35753; AI &#20570;&#20986;<br><em>&#19968;&#25972;&#27454;</em>&#28216;&#25103;</h1>
-      <p class="hero-sub" data-reveal>&#32473; AI &#29992;&#30340;&#21629;&#20196;&#34892;&#12290;&#36830;&#19978; Gandi &#32534;&#36753;&#22120;&#65292;&#29992;&#25991;&#26412;&#35835;&#12289;&#25913;&#12289;&#36816;&#34892;&#12289;&#27979;&#35797; Scratch &#20316;&#21697;&#12290;&#20195;&#30721;&#12289;&#32654;&#26415;&#12289;&#38899;&#20048;&#65292;AI &#19968;&#20010;&#20154;&#20889;&#23436;&#12290;</p>
-      <div class="prompt" id="prompt" role="img" aria-label="&#28436;&#31034;&#36755;&#20837;&#26694;&#65292;&#24490;&#29615;&#26174;&#31034;&#20960;&#21477;&#31034;&#20363;&#25351;&#20196;">
+      <p class="eyebrow" data-reveal><b>Gandi CLI</b><span class="rule"></span><span>Để AI tạo dự án Scratch</span></p>
+      <h1 class="mega" id="hero-title">Một câu nói,<br>để AI tạo nên<br><em>một trò chơi</em></h1>
+      <p class="hero-sub" data-reveal>Giao diện dòng lệnh dành cho AI. Kết nối với trình chỉnh sửa Gandi để đọc, sửa, chạy và kiểm thử dự án Scratch bằng văn bản. AI tự viết mã, vẽ đồ họa và sáng tác nhạc.</p>
+      <div class="prompt" id="prompt" role="img" aria-label="Khung nhập minh họa, luân phiên hiển thị một số câu lệnh mẫu">
         <span class="prompt-caret" aria-hidden="true">&rsaquo;</span>
         <span class="prompt-txt" id="prompt-txt" aria-hidden="true"></span><span class="cursor" aria-hidden="true"></span>
         <span class="prompt-run" aria-hidden="true"><svg viewbox="0 0 16 16"><path d="M13 3v5.5H4M7 5.5L3.8 8.5 7 11.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
-        <span class="prompt-tag" aria-hidden="true">&#31034;&#24847;</span>
+        <span class="prompt-tag" aria-hidden="true">Minh họa</span>
       </div>
     </div>
     <div class="hero-r">
-      <figure class="ws" id="hero-ws" aria-label="&#31034;&#20363;&#31243;&#24207; hello &#30340;&#31215;&#26408;">
-        <div class="ws-bar"><i></i><i></i><i></i><span class="ws-t"><span class="wt a">hello &middot; &#31034;&#20363;&#31243;&#24207;</span><span class="wt b" aria-hidden="true">hello.dsl &middot; &#31034;&#20363;&#31243;&#24207;</span></span></div>
+      <figure class="ws" id="hero-ws" aria-label="Các khối của chương trình mẫu hello">
+        <div class="ws-bar"><i></i><i></i><i></i><span class="ws-t"><span class="wt a">hello &middot; chương trình mẫu</span><span class="wt b" aria-hidden="true">hello.dsl &middot; chương trình mẫu</span></span></div>
         <div class="ws-body" id="hero-blocks"></div>
-        <button type="button" class="ws-cap" id="hero-cap" aria-pressed="false" aria-label="&#20999;&#25442;&#26174;&#31034;&#65306;&#24403;&#21069;&#26159;&#31215;&#26408;&#65292;&#28857;&#20987;&#26597;&#30475;&#23545;&#24212;&#25991;&#26412;"><span class="s-b on">&#31215;&#26408;</span><b aria-hidden="true">&#8644;</b><span class="s-c">&#25991;&#26412;</span></button>
+        <button type="button" class="ws-cap" id="hero-cap" aria-pressed="false" aria-label="Chuyển đổi chế độ hiển thị: hiện là khối, nhấn để xem văn bản tương ứng"><span class="s-b on">Khối</span><b aria-hidden="true">&#8644;</b><span class="s-c">Văn bản</span></button>
       </figure>
     </div>
   </div>
   <div class="hero-foot wrap" data-reveal>
-    <span class="scroll-cue"><i></i>&#21521;&#19979;</span>
-    <a class="ulink hero-install" href="#install" data-focus-copy>&#19968;&#21477;&#35805;&#23433;&#35013; &rarr;</a>
-    <span class="hero-note">&#31034;&#24847;&#65306;&#36755;&#20837;&#20026;&#28436;&#31034;&#65292;&#31215;&#26408;&#26469;&#33258;&#31034;&#20363;&#31243;&#24207;&#12290;</span>
+    <span class="scroll-cue"><i></i>Cuộn xuống</span>
+    <a class="ulink hero-install" href="#install" data-focus-copy>Cài đặt chỉ với một câu &rarr;</a>
+    <span class="hero-note">Minh họa: câu lệnh được mô phỏng, các khối lấy từ chương trình mẫu.</span>
   </div>
 </section>
 
@@ -81,19 +82,19 @@
   <div class="bridge-pin" id="bridge-pin">
     <div class="bridge-head wrap">
       <p class="eyebrow"><b>01</b><span class="rule"></span><span>DSL</span></p>
-      <h2 class="h2" id="bridge-h">&#31215;&#26408; &#8644; &#25991;&#26412;&#65292;<br><em>&#32467;&#26500;&#19968;&#33268;</em></h2>
+      <h2 class="h2" id="bridge-h">Khối &#8644; văn bản,<br><em>cấu trúc đồng nhất</em></h2>
     </div>
     <div class="bridge-stage wrap">
       <div class="b-blocks" id="b-blocks"><div class="b-blocks-in" id="b-blocks-in"></div></div>
       <svg class="b-links" id="b-links" aria-hidden="true"></svg>
       <div class="b-code" id="b-code">
-        <div class="b-code-bar"><span id="b-code-name">program.dsl</span><button type="button" class="fold-btn" id="fold-btn" aria-pressed="false">&#26174;&#31034; @at &#20301;&#32622;&#34892;</button></div>
-        <pre class="b-code-pre" id="b-code-pre" tabindex="0" aria-label="DSL &#25991;&#26412;"></pre>
+        <div class="b-code-bar"><span id="b-code-name">program.dsl</span><button type="button" class="fold-btn" id="fold-btn" aria-pressed="false">Hiện dòng @at</button></div>
+        <pre class="b-code-pre" id="b-code-pre" tabindex="0" aria-label="Văn bản DSL"></pre>
         <p class="fine b-code-foot" id="b-fine"></p>
       </div>
     </div>
     <div class="bridge-foot wrap">
-      <ul class="badges" id="b-badges" aria-label="&#24448;&#36820;&#39564;&#35777;"></ul>
+      <ul class="badges" id="b-badges" aria-label="Kiểm chứng hai chiều"></ul>
           </div>
     <div class="b-prog" aria-hidden="true"><i id="b-prog-i"></i></div>
   </div>
@@ -103,33 +104,33 @@
 <section class="sec writing" id="writing" aria-labelledby="writing-h">
   <div class="wrap grid">
     <div class="w-head">
-      <p class="eyebrow" data-reveal><b>02</b><span class="rule"></span><span>&#20889;&#27861;</span></p>
-      <h2 class="h2" id="writing-h" data-lines>&#25509;&#36817; <em>JavaScript</em>&#65292;<br>AI &#19981;&#29992;&#23398;&#26032;&#35821;&#27861;</h2>
-      <p class="lede" data-reveal>&#33258;&#30740;&#30340;&#31215;&#26408;&#25991;&#26412;&#35821;&#27861;&#12290;&#21464;&#37327;&#12289;&#24490;&#29615;&#12289;&#20998;&#25903;&#12289;&#27169;&#26495;&#23383;&#31526;&#20018;&#12289;&#23545;&#35937;&#19982;&#21015;&#34920;&#65292;&#37117;&#26159; AI &#26368;&#29087;&#24713;&#30340;&#20889;&#27861;&#65307;&#20854;&#20313;&#31215;&#26408;&#32479;&#19968;&#20889;&#25104; <code>category.block(&hellip;)</code>&#12290;</p>
+      <p class="eyebrow" data-reveal><b>02</b><span class="rule"></span><span>Cách viết</span></p>
+      <h2 class="h2" id="writing-h" data-lines>Gần với <em>JavaScript</em>,<br>AI không cần học cú pháp mới</h2>
+      <p class="lede" data-reveal>Cú pháp văn bản cho khối tự thiết kế. Biến, vòng lặp, rẽ nhánh, chuỗi mẫu, đối tượng và danh sách đều quen thuộc với AI; các khối khác đều viết theo dạng <code>category.block(&hellip;)</code>.</p>
     </div>
     <div class="w-code" data-reveal>
       <div class="code-win">
-        <div class="code-bar"><i></i><i></i><i></i><span>data-structures &middot; &#31034;&#20363;&#31243;&#24207;</span></div>
-        <pre class="code-pre" id="w-pre" aria-label="&#23545;&#35937;&#19982;&#21015;&#34920;&#30340; DSL &#31034;&#20363;"></pre>
+        <div class="code-bar"><i></i><i></i><i></i><span>data-structures &middot; chương trình mẫu</span></div>
+        <pre class="code-pre" id="w-pre" aria-label="Ví dụ DSL về đối tượng và danh sách"></pre>
       </div>
-      <p class="fine">&#20889;&#27861;&#20687; JavaScript&#65292;&#20294;&#21482;&#25551;&#36848;&#31215;&#26408;&#65292;&#20174;&#19981;&#34987;&#25191;&#34892;&#65307;&#37096;&#20998;&#31215;&#26408;&#20026; Gandi &#19987;&#26377;&#12290;&#23545;&#35937;&#19982;&#21015;&#34920;&#38656;&#20808;&#23433;&#35013;&#12300;&#39640;&#32423;&#25968;&#25454;&#32467;&#26500;&#12301;&#25193;&#23637;&#12290;</p>
+      <p class="fine">Cách viết giống JavaScript nhưng chỉ mô tả các khối, không bao giờ được thực thi; một số khối là tính năng riêng của Gandi. Cần cài tiện ích mở rộng “Cấu trúc dữ liệu nâng cao” để dùng đối tượng và danh sách.</p>
     </div>
     <ul class="w-feats">
-      <li data-reveal><span class="k">&#20998;&#25903;</span><code>if (&hellip;) { } else if (&hellip;) { }</code></li>
-      <li data-reveal><span class="k">&#24490;&#29615;</span><code>for (let i = 1; i &lt;= 5; i++)</code></li>
-      <li data-reveal><span class="k">&#21464;&#37327;</span><code>score += 1;</code></li>
-      <li data-reveal><span class="k">&#27169;&#26495;</span><code>`&#31532; ${i} &#20010;`</code></li>
-      <li data-reveal><span class="k">&#23545;&#35937;</span><code>player.hp += 10;</code></li>
-      <li data-reveal><span class="k">&#21015;&#34920;</span><code>log.push(i * 2);</code></li>
+      <li data-reveal><span class="k">Rẽ nhánh</span><code>if (&hellip;) { } else if (&hellip;) { }</code></li>
+      <li data-reveal><span class="k">Vòng lặp</span><code>for (let i = 1; i &lt;= 5; i++)</code></li>
+      <li data-reveal><span class="k">Biến</span><code>score += 1;</code></li>
+      <li data-reveal><span class="k">Chuỗi mẫu</span><code>`lần ${i}`</code></li>
+      <li data-reveal><span class="k">Đối tượng</span><code>player.hp += 10;</code></li>
+      <li data-reveal><span class="k">Danh sách</span><code>log.push(i * 2);</code></li>
     </ul>
     <div class="w-vs" data-reveal>
       <div class="vs-col">
-        <span class="tag">0.1.1 &middot; &#22359;&#24335;</span>
+        <span class="tag">0.1.1 &middot; dạng khối</span>
         <pre class="code-pre sm" id="vs-old"></pre>
       </div>
       <div class="vs-arrow" aria-hidden="true">&rarr;</div>
       <div class="vs-col">
-        <span class="tag accent">0.2.0 &middot; JS &#39118;&#26684;</span>
+        <span class="tag accent">0.2.0 &middot; phong cách JS</span>
         <pre class="code-pre sm" id="vs-new"></pre>
       </div>
     </div>
@@ -140,87 +141,87 @@
 <section class="sec caps" id="caps" aria-labelledby="caps-h">
   <div class="wrap">
     <div class="caps-head">
-      <p class="eyebrow" data-reveal><b>03</b><span class="rule"></span><span>&#33021;&#21147;</span></p>
-      <h2 class="h2" id="caps-h" data-lines>AI &#38656;&#35201;&#30340;&#65292;<br><em>&#37117;&#22312;&#21629;&#20196;&#34892;&#37324;</em></h2>
+      <p class="eyebrow" data-reveal><b>03</b><span class="rule"></span><span>Tính năng</span></p>
+      <h2 class="h2" id="caps-h" data-lines>Những gì AI cần,<br><em>đều có trong dòng lệnh</em></h2>
     </div>
     <div class="bento">
 
       <article class="card c-scenes" data-card>
-        <header><h3>&#22810;&#22330;&#26223;</h3></header>
+        <header><h3>Nhiều bối cảnh</h3></header>
         <div class="card-vis" id="cv-scenes"></div>
-        <p>&#24102;&#21442;&#25968;&#20999;&#25442;&#22330;&#26223;&#12290;&#21629;&#20196;&#34892;&#29992; <code>gandi scenes</code> &#31649;&#29702;&#65292;<code>gandi run --scene</code> &#25351;&#23450;&#22330;&#26223;&#12290;&#31034;&#20363;&#31243;&#24207;&#12290;</p>
+        <p>Chuyển đổi bối cảnh có tham số. Quản lý bằng lệnh <code>gandi scenes</code>, chỉ định bối cảnh với <code>gandi run --scene</code>. Chương trình mẫu.</p>
       </article>
 
       <article class="card c-groups" data-card>
-        <header><h3>&#35282;&#33394;&#19982;&#20998;&#32452;</h3></header>
-        <div class="tree" id="tree" aria-label="&#35282;&#33394;&#20998;&#32452;&#31034;&#20363;">
-          <div class="tr" data-d="0"><span class="fo">&#9662;</span>&#25112;&#26007;</div>
+        <header><h3>Nhân vật và nhóm</h3></header>
+        <div class="tree" id="tree" aria-label="Ví dụ về nhóm nhân vật">
+          <div class="tr" data-d="0"><span class="fo">&#9662;</span>Chiến đấu</div>
           <div class="tr in" data-d="1">Player</div>
           <div class="tr in" data-d="1">Bullet</div>
-          <div class="tr" data-d="2"><span class="fo">&#9662;</span>&#25932;&#20154;</div>
+          <div class="tr" data-d="2"><span class="fo">&#9662;</span>Kẻ địch</div>
           <div class="tr in" data-d="3">Enemy</div>
           <div class="tr" data-d="4">Director</div>
         </div>
-        <p>&#21517;&#23383;&#37324;&#20889; <code>&#25112;&#26007;//Player</code>&#65292;&#35282;&#33394;&#23601;&#36827;&#25991;&#20214;&#22841;&#12290;</p>
+        <p>Thêm đường dẫn vào tên <code>Chiến đấu//Player</code> để đưa nhân vật vào thư mục.</p>
       </article>
 
       <article class="card c-tests" data-card>
-        <header><h3>&#27979;&#35797;&#19982;&#26029;&#35328;</h3></header>
-        <pre class="mini" id="cv-tests" aria-label="&#26029;&#35328;&#21629;&#20196;"><span class="p">$</span> gandi assert --json '{"checks":[
+        <header><h3>Kiểm thử và xác nhận</h3></header>
+        <pre class="mini" id="cv-tests" aria-label="Lệnh xác nhận"><span class="p">$</span> gandi assert --json '{"checks":[
   "score &gt;= 3",
   "Hero.x &gt; 0"
 ]}'
 <span class="p">$</span> gandi test REF --expected-rev REV --strict-exit</pre>
         <ul class="checks" aria-hidden="true"><li>score &gt;= 3</li><li>Hero.x &gt; 0</li></ul>
-        <p>&#26029;&#35328;&#12289;&#20445;&#23384;&#22312;&#20316;&#21697;&#37324;&#30340;&#27979;&#35797;&#22871;&#20214;&#12289;&#36880;&#24103;&#36755;&#20837;&#12290;<span class="fine">&#21246;&#36873;&#20026;&#31034;&#24847;&#65307;&#26377; setup &#30340;&#29992;&#20363;&#23646;&#20110;&#21463;&#25511;&#29366;&#24577;&#65292;&#20250;&#22914;&#23454;&#26631;&#20986;&#12290;</span></p>
+        <p>Các xác nhận, bộ kiểm thử được lưu trong dự án và đầu vào theo từng khung hình.<span class="fine"> Các trường hợp có setup là trạng thái được kiểm soát và sẽ được đánh dấu rõ ràng.</span></p>
       </article>
 
       <article class="card c-arrange" data-card>
-        <header><h3>&#26234;&#33021;&#25490;&#24067;</h3></header>
+        <header><h3>Tự động sắp xếp</h3></header>
         <div class="cmp" id="cmp-arrange" data-cmp>
           <div class="cmp-b"></div>
           <div class="cmp-a"></div>
-          <div class="cmp-h" role="slider" tabindex="0" aria-label="&#23545;&#27604;&#28369;&#22359;" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><i></i></div>
-          <span class="cmp-l l">&#21407;&#29256;&#12300;&#25972;&#29702;&#31215;&#26408;&#12301;</span><span class="cmp-l r">&#26032;&#25490;&#24067;</span>
+          <div class="cmp-h" role="slider" tabindex="0" aria-label="Thanh trượt so sánh" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><i></i></div>
+          <span class="cmp-l l">Bản gốc “sắp xếp khối”</span><span class="cmp-l r">Bố cục mới</span>
         </div>
-        <p><code>gandi arrange</code>&#65306;&#25353;&#36923;&#36753;&#20998;&#32452;&#12289;&#20998;&#21015;&#12289;&#25353;&#23610;&#23544;&#35013;&#31665;&#65292;&#25972;&#27425;&#25490;&#24067;&#26159;&#32534;&#36753;&#22120;&#37324;&#30340;&#19968;&#27493;&#25764;&#38144;&#12290;</p>
+        <p><code>gandi arrange</code>: nhóm theo logic, chia cột và xếp theo kích thước. Toàn bộ thao tác sắp xếp có thể hoàn tác chỉ bằng một lần trong trình chỉnh sửa.</p>
       </article>
 
       <article class="card c-paste" data-card>
         <div class="paste-txt">
-          <header><h3>Ctrl + V&#65292;<br>&#25991;&#26412;&#30452;&#25509;&#21464;&#31215;&#26408;</h3></header>
-          <p>&#32534;&#36753;&#22120;&#20869;&#65306;&#21098;&#36148;&#26495;&#37324;&#26159; DSL&#65292;&#22312;&#24037;&#20316;&#21306;&#25353; <kbd>Ctrl</kbd> <kbd>V</kbd>&#65306;&#31215;&#26408;&#33853;&#22312;&#40736;&#26631;&#22788;&#12289;&#19981;&#21387;&#20303;&#24050;&#26377;&#33050;&#26412;&#12289;&#26032;&#33050;&#26412;&#33258;&#21160;&#36873;&#20013;&#65292;&#25972;&#27425;&#31896;&#36148;&#26159;&#19968;&#27493;&#25764;&#38144;&#12290;&#32534;&#35793;&#22833;&#36133;&#21017;&#19968;&#22359;&#37117;&#19981;&#25554;&#65292;&#24182;&#25552;&#31034;&#31532;&#19968;&#26465;&#35786;&#26029;&#12290;</p>
-          <p class="fine">&#21491;&#20391;&#20026;&#32534;&#36753;&#22120;&#30495;&#23454;&#25130;&#22270;&#65292;&#25302;&#21160;&#23545;&#27604;&#12290;</p>
+          <header><h3>Ctrl + V,<br>văn bản biến thành khối</h3></header>
+          <p>Trong trình chỉnh sửa: sao chép DSL vào khay nhớ tạm rồi nhấn <kbd>Ctrl</kbd> <kbd>V</kbd> trong vùng làm việc. Các khối được đặt tại vị trí con trỏ, không ghi đè kịch bản hiện có, kịch bản mới được tự động chọn và toàn bộ thao tác dán có thể hoàn tác một lần. Nếu biên dịch thất bại, sẽ không chèn khối nào và chẩn đoán đầu tiên được hiển thị.</p>
+          <p class="fine">Bên phải là ảnh chụp thật của trình chỉnh sửa; kéo để so sánh.</p>
         </div>
         <div class="cmp" id="cmp-paste" data-cmp data-rest="14">
           <div class="cmp-b"></div>
           <div class="cmp-a"></div>
-          <div class="cmp-h" role="slider" tabindex="0" aria-label="&#23545;&#27604;&#28369;&#22359;" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><i></i></div>
-          <span class="cmp-l l">&#31896;&#36148;&#21069;</span><span class="cmp-l r">&#31896;&#36148;&#21518;</span>
+          <div class="cmp-h" role="slider" tabindex="0" aria-label="Thanh trượt so sánh" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><i></i></div>
+          <span class="cmp-l l">Trước khi dán</span><span class="cmp-l r">Sau khi dán</span>
         </div>
       </article>
 
       <article class="card c-data" data-card>
         <div class="data-txt">
-          <header><h3>&#23545;&#35937; &middot; &#21015;&#34920; &middot; &#38598;&#21512;</h3></header>
-          <pre class="mini" id="cv-data" aria-label="&#23545;&#35937;&#19982;&#21015;&#34920;&#31034;&#20363;"></pre>
-          <p>&#23545;&#35937;&#23383;&#38754;&#37327;&#12289;&#23646;&#24615;&#33258;&#22686;&#12289;&#21015;&#34920; push&#65292;&#30452;&#25509;&#23545;&#24212;&#12300;&#39640;&#32423;&#25968;&#25454;&#32467;&#26500;&#12301;&#25193;&#23637;&#30340;&#31215;&#26408;&#12290;&#38656;&#20808;&#23433;&#35013;&#35813;&#25193;&#23637;&#12290;&#31034;&#20363;&#31243;&#24207;&#12290;</p>
+          <header><h3>Đối tượng &middot; Danh sách &middot; Tập hợp</h3></header>
+          <pre class="mini" id="cv-data" aria-label="Ví dụ về đối tượng và danh sách"></pre>
+          <p>Literal đối tượng, tăng thuộc tính, push vào danh sách tương ứng trực tiếp với các khối trong tiện ích “Cấu trúc dữ liệu nâng cao”. Cần cài tiện ích này trước. Chương trình mẫu.</p>
         </div>
         <div class="card-vis" id="cv-data-blocks"></div>
       </article>
 
       <article class="card c-ext" data-card>
-        <header><h3>&#25193;&#23637;&#33258;&#21160;&#23433;&#35013;</h3></header>
+        <header><h3>Tự động cài tiện ích mở rộng</h3></header>
         <div class="ext-vis" aria-hidden="true"><i></i><i></i><i></i></div>
-        <p>&#35835;&#21040;&#27809;&#35013;&#30340;&#25193;&#23637;&#65292;&#20808;&#25353;&#20889;&#20837;&#21516;&#26679;&#30340;&#30830;&#35748;&#19982;&#26435;&#38480;&#23433;&#35013;&#12290;&#25193;&#23637;&#20250;&#36816;&#34892;&#31532;&#19977;&#26041;&#20195;&#30721;&#12290;</p>
+        <p>Nếu phát hiện tiện ích chưa được cài, hệ thống sẽ yêu cầu xác nhận và cấp quyền như khi ghi dữ liệu. Tiện ích sẽ chạy mã của bên thứ ba.</p>
       </article>
 
       <article class="card c-rev" data-card>
-        <header><h3>&#29256;&#26412;&#20445;&#25252;</h3></header>
-        <pre class="mini" aria-label="&#24102;&#20462;&#35746;&#21495;&#20889;&#20837;"><span class="p">$</span> gandi write REF --file draft.js \
+        <header><h3>Bảo vệ phiên bản</h3></header>
+        <pre class="mini" aria-label="Ghi dữ liệu kèm số phiên bản"><span class="p">$</span> gandi write REF --file draft.js \
     --base-rev REV
 <span class="err">E_CONFLICT</span></pre>
-        <p>&#27599;&#27425;&#20889;&#20837;&#24102;&#20462;&#35746;&#21495;&#12290;&#20914;&#31361;&#34987;&#25298;&#32477;&#65292;&#32780;&#19981;&#26159;&#24708;&#24708;&#35206;&#30422;&#12290;</p>
+        <p>Mỗi lần ghi đều kèm số phiên bản. Xung đột sẽ bị từ chối thay vì âm thầm ghi đè.</p>
       </article>
 
     </div>
@@ -232,11 +233,11 @@
   <div class="wrap flow-grid">
     <div class="flow-side">
       <div class="flow-stick">
-        <p class="eyebrow"><b>04</b><span class="rule"></span><span>&#27969;&#31243;</span></p>
-        <h2 class="h2" id="flow-h">&#20845;&#27493;&#65292;<br><em>&#19968;&#20010;&#38381;&#29615;</em></h2>
+        <p class="eyebrow"><b>04</b><span class="rule"></span><span>Quy trình</span></p>
+        <h2 class="h2" id="flow-h">Sáu bước,<br><em>một vòng khép kín</em></h2>
         <ol class="flow-nav" id="flow-nav">
-          <li><a href="#st-start">start</a></li><li><a href="#st-read">read</a></li><li><a href="#st-check">check</a></li>
-          <li><a href="#st-write">write</a></li><li><a href="#st-run">run</a></li><li><a href="#st-verify">verify</a></li>
+          <li><a href="#st-start">Khởi động</a></li><li><a href="#st-read">Đọc</a></li><li><a href="#st-check">Kiểm tra</a></li>
+          <li><a href="#st-write">Ghi</a></li><li><a href="#st-run">Chạy</a></li><li><a href="#st-verify">Xác minh</a></li>
         </ol>
       </div>
     </div>
@@ -246,36 +247,36 @@
       <article class="step" id="st-start">
         <div class="step-n">01</div>
         <div class="step-b">
-          <h3>start</h3>
-          <p>&#21551;&#21160;&#26412;&#26426;&#21518;&#21488;&#26381;&#21153;&#65292;&#22312;&#32534;&#36753;&#22120;&#37324;&#28857;&#19968;&#27425;&#12300;&#36830;&#25509; CLI&#12301;&#65292;&#20320;&#22312;&#26412;&#26426;&#25480;&#26435;&#39029;&#30830;&#35748;&#12290;</p>
-          <div class="term"><div class="term-bar"><i></i><i></i><i></i><span>&#30495;&#23454;&#36755;&#20986; &middot; &#26381;&#21153;&#26410;&#21551;&#21160;&#26102;</span></div>
+          <h3>Khởi động</h3>
+          <p>Khởi chạy dịch vụ nền trên máy tính, nhấn “Kết nối CLI” một lần trong trình chỉnh sửa, rồi xác nhận trên trang cấp quyền cục bộ.</p>
+          <div class="term"><div class="term-bar"><i></i><i></i><i></i><span>Đầu ra thực tế &middot; khi dịch vụ chưa khởi chạy</span></div>
 <pre class="term-pre"><span class="ln-t"><span class="p">$</span> gandi doctor</span>
 <span class="ln-t o">{"bridge":false,"paired":false,"bound":false,"next":"gandi start"}</span>
 <span class="ln-t"><span class="p">$</span> gandi start</span>
-<span class="ln-t o dim"># &#36830;&#19978;&#32534;&#36753;&#22120;&#21518;&#65306;gandi editors &middot; gandi use EDITOR_ID &middot; gandi bind</span></pre></div>
+<span class="ln-t o dim"># Sau khi kết nối trình chỉnh sửa: gandi editors &middot; gandi use EDITOR_ID &middot; gandi bind</span></pre></div>
         </div>
       </article>
 
       <article class="step" id="st-read">
         <div class="step-n">02</div>
         <div class="step-b">
-          <h3>read</h3>
-          <p>&#32534;&#36753;&#22120;&#26159;&#19968;&#26869;&#34394;&#25311;&#28304;&#30721;&#26641;&#12290;&#20808;&#30475;&#27010;&#20917;&#65292;&#20877;&#35835;&#20855;&#20307;&#39029;&#38754;&#65292;&#35835;&#22238;&#26469;&#30340;&#20869;&#23481;&#24102;&#20462;&#35746;&#21495;&#12290;</p>
-          <div class="term"><div class="term-bar"><i></i><i></i><i></i><span>&#26469;&#33258; gandi --help</span></div>
+          <h3>Đọc</h3>
+          <p>Trình chỉnh sửa là một cây mã nguồn ảo. Trước tiên xem tổng quan, sau đó đọc trang cụ thể; nội dung đọc được sẽ kèm số phiên bản.</p>
+          <div class="term"><div class="term-bar"><i></i><i></i><i></i><span>Từ gandi --help</span></div>
 <pre class="term-pre"><span class="ln-t"><span class="p">$</span> gandi overview</span>
 <span class="ln-t"><span class="p">$</span> gandi files --kind blocks</span>
 <span class="ln-t"><span class="p">$</span> gandi read REF --offset 1 --limit 100</span>
 <span class="ln-t"><span class="p">$</span> gandi grep 'score' --glob '**/*.js' --context 2</span>
-<span class="ln-t o dim"># &#36755;&#20986;&#36830;&#19978;&#32534;&#36753;&#22120;&#21518;&#25165;&#26377; &middot; &#31034;&#24847;</span></pre></div>
+<span class="ln-t o dim"># Chỉ có đầu ra sau khi kết nối trình chỉnh sửa &middot; minh họa</span></pre></div>
         </div>
       </article>
 
       <article class="step" id="st-check">
         <div class="step-n">03</div>
         <div class="step-b">
-          <h3>check</h3>
-          <p>&#21482;&#26816;&#26597;&#19981;&#20889;&#20837;&#12290;&#25253;&#38169;&#24102;&#34892;&#12289;&#21015;&#21644;&#25913;&#27861;&#12290;</p>
-          <div class="term"><div class="term-bar"><i></i><i></i><i></i><span>&#35786;&#26029;&#26465;&#30446;&#20026;&#30495;&#23454;&#32534;&#35793;&#22120;&#36755;&#20986; &middot; &#22806;&#23618;&#20026;&#31034;&#24847;</span></div>
+          <h3>Kiểm tra</h3>
+          <p>Chỉ kiểm tra, không ghi dữ liệu. Báo lỗi kèm dòng, cột và gợi ý sửa.</p>
+          <div class="term"><div class="term-bar"><i></i><i></i><i></i><span>Các mục chẩn đoán là đầu ra thực tế từ trình biên dịch &middot; khung ngoài chỉ mang tính minh họa</span></div>
 <pre class="term-pre"><span class="ln-t"><span class="p">$</span> gandi check REF --file draft.js</span>
 <span class="ln-t o">{"code":"E_UNKNOWN_VAR","message":"Unknown identifier zzz; declare it first",</span>
 <span class="ln-t o"> "line":2,"column":3,"severity":"error",</span>
@@ -286,21 +287,21 @@
       <article class="step" id="st-write">
         <div class="step-n">04</div>
         <div class="step-b">
-          <h3>write</h3>
-          <p>&#24102;&#30528;&#35835;&#21040;&#30340;&#20462;&#35746;&#21495;&#20889;&#20837;&#12290;&#20063;&#21487;&#20197;&#20808; <code>--dry-run</code> &#39044;&#35272;&#31934;&#30830;&#26367;&#25442;&#30340;&#24046;&#24322;&#12290;</p>
-          <div class="term"><div class="term-bar"><i></i><i></i><i></i><span>&#26469;&#33258; gandi --help</span></div>
+          <h3>Ghi</h3>
+          <p>Ghi dữ liệu kèm số phiên bản đã đọc. Có thể dùng <code>--dry-run</code> để xem trước chính xác các thay đổi.</p>
+          <div class="term"><div class="term-bar"><i></i><i></i><i></i><span>Từ gandi --help</span></div>
 <pre class="term-pre"><span class="ln-t"><span class="p">$</span> gandi write REF --file draft.js --base-rev REV</span>
 <span class="ln-t"><span class="p">$</span> gandi edit REF --edits-file edits.json --base-rev REV --dry-run</span>
-<span class="ln-t o dim"># &#20462;&#35746;&#21495;&#36807;&#26399; &rarr; E_CONFLICT&#65292;&#19981;&#20250;&#35206;&#30422;</span></pre></div>
+<span class="ln-t o dim"># Số phiên bản đã cũ &rarr; E_CONFLICT, sẽ không ghi đè</span></pre></div>
         </div>
       </article>
 
       <article class="step" id="st-run">
         <div class="step-n">05</div>
         <div class="step-b">
-          <h3>run</h3>
-          <p>&#22312;&#21518;&#21488;&#36816;&#34892;&#22120;&#37324;&#36880;&#24103;&#36816;&#34892;&#65292;&#27880;&#20837;&#38190;&#30424;&#19982;&#40736;&#26631;&#65292;&#19981;&#30896;&#20320;&#27491;&#22312;&#32534;&#36753;&#30340;&#20316;&#21697;&#12290;</p>
-          <div class="term"><div class="term-bar"><i></i><i></i><i></i><span>&#20837;&#21442;&#26469;&#33258; guide testing &middot; &#36755;&#20986;&#20026;&#31034;&#24847;</span></div>
+          <h3>Chạy</h3>
+          <p>Chạy từng khung hình trong trình chạy nền, mô phỏng bàn phím và chuột mà không chạm vào dự án bạn đang chỉnh sửa.</p>
+          <div class="term"><div class="term-bar"><i></i><i></i><i></i><span>Đầu vào từ guide testing &middot; đầu ra minh họa</span></div>
 <pre class="term-pre"><span class="ln-t"><span class="p">$</span> gandi run --json '{"frames":60,"inputs":[</span>
 <span class="ln-t">    {"frame":2,"key":"space","down":true},</span>
 <span class="ln-t">    {"frame":12,"key":"space","down":false}]}'</span>
@@ -311,15 +312,15 @@
       <article class="step" id="st-verify">
         <div class="step-n">06</div>
         <div class="step-b">
-          <h3>verify</h3>
-          <p>&#26029;&#35328;&#36890;&#36807;&#25165;&#31639;&#25968;&#12290;&#20445;&#23384;&#25104;&#27979;&#35797;&#22871;&#20214;&#65292;&#27599;&#20010;&#29992;&#20363;&#20174;&#21516;&#19968;&#20221;&#24555;&#29031;&#12289;&#22312;&#20840;&#26032;&#30340;&#36816;&#34892;&#26102;&#37324;&#24320;&#22987;&#12290;</p>
-          <div class="term"><div class="term-bar"><i></i><i></i><i></i><span>&#26469;&#33258; gandi --help &middot; &#36755;&#20986;&#20026;&#31034;&#24847;</span></div>
+          <h3>Xác minh</h3>
+          <p>Chỉ tính là đạt khi các xác nhận thành công. Lưu thành bộ kiểm thử; mỗi trường hợp bắt đầu từ cùng một ảnh chụp trong một môi trường chạy mới.</p>
+          <div class="term"><div class="term-bar"><i></i><i></i><i></i><span>Từ gandi --help &middot; đầu ra minh họa</span></div>
 <pre class="term-pre"><span class="ln-t"><span class="p">$</span> gandi assert --json '{"checks":["score &gt;= 3","Hero.x &gt; 0"]}'</span>
 <span class="ln-t"><span class="p">$</span> gandi test REF --expected-rev REV --strict-exit</span>
 <span class="ln-t"><span class="p">$</span> gandi export --output NEW.sb3</span></pre></div>
         </div>
       </article>
-      <p class="fine flow-fine">&#32456;&#31471;&#20869;&#23481;&#20026;&#31034;&#24847;&#65292;&#23454;&#38469;&#36755;&#20986;&#20197;&#20320;&#30340;&#20316;&#21697;&#20026;&#20934;&#12290;</p>
+      <p class="fine flow-fine">Nội dung đầu cuối chỉ mang tính minh họa; kết quả thực tế phụ thuộc vào dự án của bạn.</p>
     </div>
   </div>
 </section>
@@ -328,63 +329,63 @@
 <section class="gallery" id="gallery" aria-labelledby="gal-h">
   <div class="gal-pin" id="gal-pin">
     <div class="gal-head wrap">
-      <p class="eyebrow"><b>05</b><span class="rule"></span><span>&#31034;&#20363;&#31243;&#24207;</span></p>
-      <h2 class="h2 sm" id="gal-h">&#30495;&#23454;&#28210;&#26579;&#30340;&#31215;&#26408;&#65292;<em>&#30495;&#23454;&#25171;&#21360;&#30340;&#25991;&#26412;</em></h2>
+      <p class="eyebrow"><b>05</b><span class="rule"></span><span>Chương trình mẫu</span></p>
+      <h2 class="h2 sm" id="gal-h">Khối được kết xuất thực tế,<em>văn bản được in ra thực tế</em></h2>
     </div>
     <div class="gal-track" id="gal-track"></div>
-    <div class="gal-hint fine wrap">&#31034;&#20363;&#31243;&#24207;&#65292;&#38750; AI &#23454;&#38469;&#20135;&#20986;&#12290;&#25302;&#21160;&#25110;&#28378;&#21160;&#27983;&#35272;&#12290;</div>
+    <div class="gal-hint fine wrap">Các chương trình mẫu, không phải sản phẩm thực tế do AI tạo. Kéo hoặc cuộn để xem.</div>
   </div>
 </section>
 
 <!-- ================= 06 CLAIM ================= -->
 <section class="sec claim" id="claim" aria-labelledby="claim-h">
   <div class="wrap">
-    <p class="eyebrow" data-reveal><b>06</b><span class="rule"></span><span>&#19968;&#25972;&#27454;&#28216;&#25103;</span></p>
-    <h2 class="claim-h" id="claim-h" data-lines>&#19968;&#21477;&#35805;&#65292;<br><em>&#19968;&#25972;&#27454;</em>&#28216;&#25103;</h2>
+    <p class="eyebrow" data-reveal><b>06</b><span class="rule"></span><span>Một trò chơi hoàn chỉnh</span></p>
+    <h2 class="claim-h" id="claim-h" data-lines>Một câu nói,<br><em>một trò chơi</em> hoàn chỉnh</h2>
     <div class="pillars-head">
-      <h3 class="pillars-h" data-lines>&#20195;&#30721;&#12289;&#32654;&#26415;&#12289;&#38899;&#20048;&#65292;<br><em>AI &#19968;&#20010;&#20154;&#20889;&#23436;</em></h3>
+      <h3 class="pillars-h" data-lines>Mã nguồn, đồ họa, âm nhạc,<br><em>AI tự mình hoàn thiện</em></h3>
     </div>
     <div class="pillars">
       <article class="pillar" data-reveal>
         <span class="pn">01</span>
-        <h4>&#20889;&#20195;&#30721;</h4>
-        <p>&#25152;&#26377;&#29609;&#27861;&#36923;&#36753;&#65292;&#30452;&#25509;&#20889;&#25104;&#21407;&#29983;&#31215;&#26408;&#12290;&#20889;&#23436;&#21363;&#26816;&#26597;&#65292;&#20877;&#36880;&#24103;&#36816;&#34892;&#12289;&#26029;&#35328;&#12289;&#20445;&#23384;&#20026;&#27979;&#35797;&#12290;</p>
+        <h4>Viết mã</h4>
+        <p>Toàn bộ logic trò chơi được viết trực tiếp thành các khối gốc. Kiểm tra ngay sau khi viết, rồi chạy từng khung hình, xác nhận và lưu thành bài kiểm thử.</p>
         <p class="pd">check &middot; run &middot; assert</p>
       </article>
       <article class="pillar" data-reveal>
         <span class="pn">02</span>
-        <h4>&#30011;&#32654;&#26415;</h4>
-        <p>&#35282;&#33394;&#36896;&#22411;&#12289;&#32972;&#26223;&#19982;&#30028;&#38754;&#65292;&#30001; AI &#33258;&#24049;&#30011;&#65292;&#30452;&#25509;&#20889;&#36827;&#20316;&#21697;&#12290;</p>
-        <p class="pd">&#36896;&#22411; &middot; &#32972;&#26223; &middot; &#30028;&#38754;</p>
+        <h4>Vẽ đồ họa</h4>
+        <p>AI tự vẽ nhân vật, phông nền và giao diện rồi ghi trực tiếp vào dự án.</p>
+        <p class="pd">Nhân vật &middot; phông nền &middot; giao diện</p>
       </article>
       <article class="pillar" data-reveal>
         <span class="pn">03</span>
-        <h4>&#20316;&#38899;&#20048;</h4>
-        <p>&#26059;&#24459;&#12289;&#20276;&#22863;&#19982;&#38899;&#25928;&#65292;&#30001; AI &#33258;&#24049;&#20316;&#65292;&#30452;&#25509;&#20889;&#36827;&#20316;&#21697;&#12290;</p>
-        <p class="pd">&#26059;&#24459; &middot; &#20276;&#22863; &middot; &#38899;&#25928;</p>
+        <h4>Sáng tác nhạc</h4>
+        <p>AI tự sáng tác giai điệu, nhạc đệm và hiệu ứng âm thanh rồi ghi trực tiếp vào dự án.</p>
+        <p class="pd">Giai điệu &middot; nhạc đệm &middot; hiệu ứng âm thanh</p>
       </article>
     </div>
 
-    <div class="cases" id="cases" aria-label="&#26696;&#20363;"></div>
+    <div class="cases" id="cases" aria-label="Ví dụ"></div>
   </div>
 </section>
 
 <!-- ================= 07 INSTALL ================= -->
 <section class="sec install" id="install" aria-labelledby="inst-h">
   <div class="wrap">
-    <p class="eyebrow" data-reveal><b>07</b><span class="rule"></span><span>&#23433;&#35013;</span></p>
-    <h2 class="inst-h" id="inst-h" data-lines>&#35753;&#20320;&#30340; AI Agent <em>&#23398;&#20250;</em>&#20570;&#28216;&#25103;</h2>
-    <p class="inst-sub" data-reveal>&#23433;&#35013;&#21482;&#35201;&#19968;&#21477;&#35805;&#12290;&#20002;&#32473; AI&#65292;&#23427;&#33258;&#24049;&#23601;&#20250;&#20102;&#12290;</p>
+    <p class="eyebrow" data-reveal><b>07</b><span class="rule"></span><span>Cài đặt</span></p>
+    <h2 class="inst-h" id="inst-h" data-lines>Dạy AI Agent <em>cách</em> tạo trò chơi</h2>
+    <p class="inst-sub" data-reveal>Chỉ cần một câu để cài đặt. Gửi câu lệnh cho AI, nó sẽ tự biết cách làm.</p>
 
     <div class="inst-grid">
       <div class="say" id="say" data-reveal>
-        <span class="say-k">&#21457;&#32473;&#20320;&#30340; AI</span>
-        <p class="say-t" id="say-t"><span class="nb">&#24110;&#25105;&#23433;&#35013; <code>npm install -g @kukemc/gandi-cli</code></span> <span class="nb">&#24182;&#26597;&#30475; <code>gandi --help</code>&#12290;</span></p>
+        <span class="say-k">Gửi cho AI</span>
+        <p class="say-t" id="say-t"><span class="nb">Hãy cài đặt <code>npm install -g @kukemc/gandi-cli</code></span> <span class="nb">và xem <code>gandi --help</code>.</span></p>
         <div class="say-f">
-          <span class="say-hint">&#22797;&#21046;&#65292;&#31896;&#36148;&#32473;&#20219;&#20309; AI Agent</span>
-          <button type="button" class="say-copy" id="say-copy" data-say="&#24110;&#25105;&#23433;&#35013; npm install -g @kukemc/gandi-cli &#24182;&#26597;&#30475; gandi --help&#12290;">
+          <span class="say-hint">Sao chép rồi dán cho bất kỳ AI Agent nào</span>
+          <button type="button" class="say-copy" id="say-copy" data-say="Hãy cài đặt npm install -g @kukemc/gandi-cli và xem gandi --help.">
             <svg viewbox="0 0 16 16" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.8" fill="none" stroke="currentColor" stroke-width="1.4"></rect><path d="M10.5 3.2V3A1.5 1.5 0 0 0 9 1.5H3.5A1.5 1.5 0 0 0 2 3v5.5A1.5 1.5 0 0 0 3.5 10h.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path></svg>
-            <span class="say-l">&#22797;&#21046;&#36825;&#21477;&#35805;</span>
+            <span class="say-l">Sao chép câu này</span>
           </button>
         </div>
         <span class="sr" id="say-live" aria-live="polite"></span>
@@ -392,9 +393,9 @@
 
       <div class="agent" id="agent" data-reveal>
         <div class="agent-in">
-          <div class="agent-bar"><i></i><i></i><i></i><span>AI Agent</span><em class="tag">&#31034;&#24847;</em></div>
-          <div class="agent-scroll"><pre class="agent-pre" id="agent-pre" aria-label="&#31034;&#24847;&#65306;AI &#25910;&#21040;&#36825;&#21477;&#35805;&#21518;&#20808;&#23433;&#35013;&#65292;&#20877;&#36816;&#34892; gandi --help&#65307;&#19979;&#38754;&#26159; gandi --help &#30495;&#23454;&#36755;&#20986;&#30340;&#33410;&#36873;"></pre></div>
-          <p class="fine agent-fine">&#21069;&#20004;&#34892;&#20026;&#31034;&#24847;&#65307;&#20854;&#20313;&#26159; <code>gandi --help</code> &#30340;&#30495;&#23454;&#36755;&#20986;&#33410;&#36873;&#65292;&#21407;&#25991;&#26410;&#25913;&#12290;</p>
+          <div class="agent-bar"><i></i><i></i><i></i><span>AI Agent</span><em class="tag">Minh họa</em></div>
+          <div class="agent-scroll"><pre class="agent-pre" id="agent-pre" aria-label="Minh họa: sau khi nhận câu lệnh này, AI cài đặt rồi chạy gandi --help; bên dưới là trích đoạn đầu ra thực tế của gandi --help"></pre></div>
+          <p class="fine agent-fine">Hai dòng đầu là minh họa; phần còn lại là trích đoạn đầu ra thực tế của <code>gandi --help</code>, được giữ nguyên bản.</p>
         </div>
       </div>
     </div>
@@ -402,28 +403,28 @@
     <div class="alt-panel" id="alt-panel" data-reveal>
       <div class="alt">
         <div class="alt-a">
-          <span class="alt-l">&#25110;&#32773;&#33258;&#24049;&#35013;</span>
-          <button type="button" class="mini-cmd" data-copy="npm i -g @kukemc/gandi-cli" aria-label="&#22797;&#21046;&#23433;&#35013;&#21629;&#20196; npm i -g @kukemc/gandi-cli">
+          <span class="alt-l">Hoặc tự cài đặt</span>
+          <button type="button" class="mini-cmd" data-copy="npm i -g @kukemc/gandi-cli" aria-label="Sao chép lệnh cài đặt npm i -g @kukemc/gandi-cli">
             <code>npm i -g @kukemc/gandi-cli</code>
-            <span class="mini-copy"><span class="copy-l">&#22797;&#21046;</span></span>
+            <span class="mini-copy"><span class="copy-l">Sao chép</span></span>
           </button>
         </div>
         <div class="alt-b">
-          <a class="ulink alt-link" href="https://gandi.kuke.ink/editor/" target="_blank" rel="noopener">&#25171;&#24320;&#32534;&#36753;&#22120; &#8599;</a>
-          <button type="button" class="manual-toggle" id="manual-toggle" aria-expanded="false" aria-controls="manual-body"><span>&#25163;&#21160;&#23433;&#35013;&#27493;&#39588;</span><i aria-hidden="true"></i></button>
+          <a class="ulink alt-link" href="https://gandi.kuke.ink/editor/" target="_blank" rel="noopener">Mở trình chỉnh sửa &#8599;</a>
+          <button type="button" class="manual-toggle" id="manual-toggle" aria-expanded="false" aria-controls="manual-body"><span>Hướng dẫn cài đặt thủ công</span><i aria-hidden="true"></i></button>
         </div>
       </div>
       <div class="manual-body" id="manual-body" hidden><div class="manual-in">
         <ol class="inst-steps">
-          <li><span>1</span><code>gandi start</code><em>&#21551;&#21160;&#26412;&#26426;&#21518;&#21488;&#26381;&#21153;</em></li>
-          <li><span>2</span><code>&#36830;&#25509; CLI</code><em>&#22312;&#32534;&#36753;&#22120;&#37324;&#28857;&#19968;&#27425;&#65292;&#21040;&#26412;&#26426;&#25480;&#26435;&#39029;&#30830;&#35748;</em></li>
-          <li><span>3</span><code>gandi guide start</code><em>&#35753; AI &#20174;&#20869;&#32622;&#25351;&#21335;&#24320;&#22987;</em></li>
+          <li><span>1</span><code>gandi start</code><em>Khởi chạy dịch vụ nền trên máy tính</em></li>
+          <li><span>2</span><code>Kết nối CLI</code><em>Nhấn một lần trong trình chỉnh sửa rồi xác nhận trên trang cấp quyền cục bộ</em></li>
+          <li><span>3</span><code>gandi guide start</code><em>Để AI bắt đầu với hướng dẫn tích hợp</em></li>
         </ol>
-        <p class="fine">&#38656;&#35201; Node.js 20 &#25110;&#26356;&#39640;&#12290;</p>
+        <p class="fine">Yêu cầu Node.js 20 trở lên.</p>
       </div></div>
     </div>
 
-    <p class="notes" data-reveal>&#24403;&#21069;&#29256;&#26412; 0.2.0&#12290;&#25991;&#26412;&#20889;&#27861;&#12289;&#26234;&#33021;&#25490;&#24067;&#12289;Ctrl + V &#31896;&#36148;&#31561;&#21151;&#33021;&#22312; Gandi &#32534;&#36753;&#22120;&#20013;&#25191;&#34892;&#12290;&#39318;&#27425;&#25480;&#26435;&#38656;&#35201;&#20320;&#22312;&#26412;&#26426;&#25480;&#26435;&#39029;&#30830;&#35748;&#65292;&#38543;&#26102;&#21487;&#29992; <code>gandi revoke</code> &#25764;&#38144;&#65307;&#25193;&#23637;&#23433;&#35013;&#20250;&#36816;&#34892;&#31532;&#19977;&#26041;&#20195;&#30721;&#65307;&#27983;&#35272;&#22120;&#21487;&#33021;&#38656;&#35201;&#25918;&#34892;&#26412;&#22320;&#32593;&#32476;&#35775;&#38382;&#12290;</p>
+    <p class="notes" data-reveal>Phiên bản hiện tại 0.2.0. Các tính năng viết bằng văn bản, tự động sắp xếp, dán bằng Ctrl + V và những tính năng khác được thực thi trong trình chỉnh sửa Gandi. Lần cấp quyền đầu tiên cần được xác nhận trên trang cấp quyền cục bộ; có thể thu hồi bất cứ lúc nào bằng <code>gandi revoke</code>. Cài tiện ích mở rộng sẽ chạy mã của bên thứ ba; trình duyệt có thể yêu cầu cho phép truy cập mạng cục bộ.</p>
   </div>
 </section>
 </main>
@@ -431,7 +432,7 @@
 <footer class="foot">
   <div class="wrap foot-row">
     <span>Gandi CLI &middot; MIT</span>
-    <span><a class="ulink" href="https://www.npmjs.com/package/@kukemc/gandi-cli" target="_blank" rel="noopener">npm</a> &middot; <a class="ulink" href="https://gandi.kuke.ink/editor/" target="_blank" rel="noopener">Gandi &#32534;&#36753;&#22120;</a> &middot; <a class="ulink" href="https://gandi.kuke.ink/feedback/" target="_blank" rel="noopener">&#21453;&#39304;</a></span>
+    <span><a class="ulink" href="https://www.npmjs.com/package/@kukemc/gandi-cli" target="_blank" rel="noopener">npm</a> &middot; <a class="ulink" href="https://gandi.kuke.ink/editor/" target="_blank" rel="noopener">Trình chỉnh sửa Gandi</a> &middot; <a class="ulink" href="https://gandi.kuke.ink/feedback/" target="_blank" rel="noopener">Gửi phản hồi</a></span>
   </div>
   <div class="foot-big" aria-hidden="true">Gandi <i>CLI</i></div>
 </footer>

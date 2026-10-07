@@ -1,7 +1,7 @@
 (function () {
   var GC = window.GC;
   // demo sentences typed into the hero prompt (game names are plain text)
-  var PHRASES = ['一比一还原《星露谷物语》', '还原 Undertale，美术音乐全包', '做一个完整的《泰拉瑞亚》', '还原 Minecraft'];
+  var PHRASES = ['Game Tết: hái lộc, nhận điểm', 'Đua xe qua phố cổ Hội An', 'Mèo con giao bánh mì Sài Gòn', 'Phiêu lưu ở Vịnh Hạ Long'];
 
   GC.register(function () {
     var hero = GC.qs('#top'), title = GC.qs('#hero-title');

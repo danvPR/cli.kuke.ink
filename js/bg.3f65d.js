@@ -1,5 +1,5 @@
-/* Background motion: everything is a continuous function of scroll progress p (0..1), lerped, never snapped per section.
-   Only opacity (base tones) and transform (colour fields, dot grid, ghosts) change. Reduced motion: one fixed static state. */
+/* Chuyển động nền: mọi thứ là hàm liên tục của tiến độ cuộn p (0..1), được nội suy mượt mà, không nhảy theo từng phần.
+   Chỉ opacity (tông màu nền) và transform (các mảng màu, lưới chấm, hình bóng) thay đổi. Khi giảm chuyển động: dùng một trạng thái tĩnh cố định. */
 (function () {
   var GC = window.GC;
   var GHOSTS = [
@@ -43,7 +43,7 @@
       w2.style.transform = 'translate3d(' + t.b[0].toFixed(1) + 'px,' + t.b[1].toFixed(1) + 'px,0)';
       w3.style.transform = 'translate3d(' + t.c[0].toFixed(1) + 'px,' + t.c[1].toFixed(1) + 'px,0)';
     }
-    if (reduced) { apply(targets(0.16)); return; }   // one fixed, good-looking static state
+    if (reduced) { apply(targets(0.16)); return; }   // một trạng thái tĩnh cố định, đẹp mắt
 
     var lastS = -1, settled = false;
     gsap.ticker.add(function () {

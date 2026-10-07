@@ -13,7 +13,7 @@
 
     var marks = D.marks.marks.filter(function (m) { return m.step != null; }).sort(function (a, b) { return a.step - b.step; });
     var atLines = (D.meta.atLines || []);
-    var rawLines = D.dsl.split('\n');
+    var rawLines = GC.localizeSampleCode(D.dsl).split('\n');
     var shown = [];                                     // [{n: original 1-based line, text}]
     rawLines.forEach(function (t, i) { if (atLines.indexOf(i + 1) < 0) shown.push({ n: i + 1, text: t }); });
 
@@ -75,7 +75,7 @@
       ws.classList.toggle('is-code', state === 'code');
       capSpans.b.classList.toggle('on', state === 'blocks'); capSpans.c.classList.toggle('on', state === 'code');
       cap.setAttribute('aria-pressed', String(state === 'code'));
-      cap.setAttribute('aria-label', state === 'code' ? '切换显示：当前是文本，点击查看对应积木' : '切换显示：当前是积木，点击查看对应文本');
+      cap.setAttribute('aria-label', state === 'code' ? 'Chuyển chế độ hiển thị: hiện là văn bản, nhấn để xem các khối tương ứng' : 'Chuyển chế độ hiển thị: hiện là các khối, nhấn để xem văn bản tương ứng');
     }
     var allOwn = [].concat.apply([], marks.map(function (m) { return own[m.id].concat(txt[m.id]); }));
     var allLines = GC.qsa('.ml', code);

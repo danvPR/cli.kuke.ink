@@ -3,6 +3,24 @@
 (function () {
   var GC = window.GC;
   var E = GC.escape;
+  var caseCopy = {
+    '雾·钟': {
+      title: 'Sương mù · Chuông',
+      text: 'Trò chơi khám phá, kể chuyện góc nhìn từ trên xuống theo phong cách pixel: bạn vào vai một linh mục đến ngôi làng vắng bóng người, vừa di chuyển vừa điều tra, ghép nối sự thật qua ánh sáng và ký ức.',
+      tag: 'Dự án cộng đồng',
+      credit: 'Tác giả trong cộng đồng đã tạo nên trò chơi độc lập hoàn chỉnh này chỉ bằng một câu lệnh với Gandi CLI.',
+      fine: 'Số liệu lấy từ tệp của dự án; không tính các khối bóng.',
+      coverCap: 'Nhà thờ lúc hoàng hôn; góc trên bên trái là thanh mục tiêu và tiến độ ký ức.',
+      stats: [
+        { n: '22', l: 'nhân vật' },
+        { n: '1562', l: 'khối' },
+        { n: '80', l: 'kịch bản cấp cao nhất' },
+        { n: '144', l: 'trang phục' },
+        { n: '13', l: 'âm thanh' },
+        { n: '5', l: 'tiện ích mở rộng' }
+      ]
+    }
+  };
 
   function stats(r) {
     return (r.stats || []).length ? '<div class="case-stats">' + r.stats.map(function (s) {
@@ -83,9 +101,13 @@
   GC.register(function () {
     var D = window.GC_DATA, recs = (D && D.records) || [], host = GC.qs('#cases');
     if (!host || !recs.length) return;
-    var out = html(recs[0], true);
-    if (recs.length > 1) out += '<div class="more-cases"><p class="case-label"><b>Dự án khác</b></p><div class="more-grid">' + recs.slice(1).map(function (r) { return html(r, false); }).join('') + '</div></div>';
+    var localized = recs.map(function (r) {
+      var copy = caseCopy[r.title];
+      return copy ? Object.assign({}, r, copy) : r;
+    });
+    var out = html(localized[0], true);
+    if (localized.length > 1) out += '<div class="more-cases"><p class="case-label"><b>Dự án khác</b></p><div class="more-grid">' + localized.slice(1).map(function (r) { return html(r, false); }).join('') + '</div></div>';
     host.innerHTML = out;
-    GC.qsa('.show', host).forEach(function (el, i) { wire(el, i === 0 ? recs[0] : recs[i]); });
+    GC.qsa('.show', host).forEach(function (el, i) { wire(el, localized[i]); });
   });
 })();

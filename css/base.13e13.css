@@ -31,7 +31,7 @@ code,pre,kbd,samp{font-family:var(--f-mono);font-variant-ligatures:none;font-fea
 .nav.is-solid{background:rgba(11,10,9,.62);-webkit-backdrop-filter:blur(14px) saturate(1.1);backdrop-filter:blur(14px) saturate(1.1);border-color:var(--line)}
 .nav.is-hidden{transform:translateY(-100%)}
 .wordmark{font-family:var(--f-ui);font-weight:600;font-size:15px;letter-spacing:-.01em;display:flex;align-items:center;gap:5px}
-.wordmark .wm-lk{display:block;height:1.7em;width:auto;flex:none;overflow:visible}
+.wordmark .brand-logo{display:block;width:clamp(112px,13vw,160px);height:auto;flex:none}
 .wordmark i{font-family:var(--f-serif);font-style:italic;font-weight:400;font-size:19px;color:var(--accent);letter-spacing:0}
 .nav ul{display:flex;gap:clamp(18px,2.6vw,40px);font-size:13px;color:var(--ink-2)}
 .nav-r{display:flex;align-items:center;gap:20px;font-size:13px}
@@ -88,4 +88,5 @@ section{position:relative}
   .nav ul{display:none}
   .nav-r .hide-s{display:none}
   .btn{height:48px;padding:0 22px}
+  .wordmark .brand-logo{width:124px}
 }
