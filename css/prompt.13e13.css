@@ -1,0 +1,25 @@
+/* hero demo prompt: not a real input (role=img, no focusable children) */
+.prompt{position:relative;margin-top:clamp(26px,4.4vh,48px);display:flex;align-items:center;gap:14px;width:min(100%,780px);min-height:clamp(60px,7.2vh,76px);
+  padding:clamp(14px,1.8vh,20px) 14px clamp(14px,1.8vh,20px) clamp(18px,1.8vw,26px);border:1px solid var(--line-2);border-radius:18px;
+  background:linear-gradient(180deg,rgba(244,241,234,.07),rgba(244,241,234,.03));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 24px 50px -28px rgba(0,0,0,.7);user-select:none;-webkit-user-select:none;pointer-events:none}
+/* breathing amber hairline: opacity-only animation on a pseudo element */
+.prompt::after{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;pointer-events:none;
+  background:linear-gradient(120deg,rgba(255,171,25,.85),rgba(255,171,25,.15) 45%,rgba(255,171,25,.5));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+  opacity:.38;animation:breathe 4.2s ease-in-out infinite}
+.prompt.is-typing::after{animation-duration:2.4s;opacity:.55}
+@keyframes breathe{0%,100%{opacity:.26}50%{opacity:.62}}
+.prompt-caret{color:var(--accent);font-family:var(--f-mono);font-size:clamp(20px,1.9vw,28px);line-height:1;transform:translateY(-1px)}
+.prompt-txt{flex:0 1 auto;min-width:0;white-space:nowrap;overflow:hidden;color:var(--ink);font-family:var(--f-ui);font-size:clamp(16px,1.7vw,24px);font-weight:500;letter-spacing:-.01em;line-height:1.3}
+.cursor{flex:none;width:1.5px;height:clamp(20px,2vw,28px);background:var(--accent);margin-left:-8px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.prompt-run{margin-left:auto;flex:none;width:clamp(36px,3.2vw,44px);height:clamp(36px,3.2vw,44px);border-radius:12px;border:1px solid var(--line-2);display:grid;place-items:center;color:var(--ink-3);background:rgba(244,241,234,.04)}
+.prompt-run svg{width:55%;height:55%}
+.prompt-tag{position:absolute;right:18px;top:-9px;padding:1px 9px;border-radius:99px;background:var(--bg);border:1px solid var(--line);font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;color:var(--ink-3);line-height:1.6}
+@media (max-width:560px){
+  .prompt{gap:10px;padding-right:10px}
+  .prompt-txt{font-size:clamp(14px,4.5vw,20px)}
+  .prompt-run{display:none}
+}
+@media (prefers-reduced-motion:reduce){.prompt::after{animation:none;opacity:.4}.cursor{animation:none}}

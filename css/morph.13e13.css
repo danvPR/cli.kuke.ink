@@ -1,0 +1,22 @@
+/* Hero panel: blocks <-> code morph (real SVG + real DSL at both ends; chips are abstract transition shapes) */
+.ws-cap{width:100%;background:none;border-left:0;border-right:0;border-bottom:0;cursor:pointer;transition:color .3s}
+.ws-cap:hover{color:var(--ink)}
+.ws-cap span{transition:color .5s,opacity .5s;opacity:.38}
+.ws-cap span.on{color:var(--acc-t);opacity:1}
+.ws-cap b{display:inline-block;transition:transform .8s var(--ease-out)}
+.ws-cap[aria-pressed="true"] b{transform:rotate(180deg)}
+.ws-t{position:relative;display:inline-block;min-width:160px;height:1.4em;vertical-align:middle}
+.ws-t .wt{position:absolute;left:0;top:0;white-space:nowrap;transition:opacity .6s}
+.ws-t .wt.b{opacity:0}
+.ws.is-code .ws-t .wt.a{opacity:0}.ws.is-code .ws-t .wt.b{opacity:1}
+.ws-body{position:relative}
+.ws-body.mx{cursor:pointer}
+.mcode{position:absolute;margin:0;font-family:var(--f-mono);white-space:pre;color:var(--ink-2);pointer-events:none;font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0}
+.mcode .ml{display:block;width:max-content;padding:0 6px;margin-left:-6px;opacity:0;border-radius:4px}
+.mcode .ml.ph{visibility:hidden}
+.mchips{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.mchip{position:absolute;inset:0;opacity:0}
+.mchip .cx{position:absolute;left:0;top:0;border-radius:5px;overflow:hidden;transform-origin:0 0}
+.mchip i{position:absolute;inset:0;display:block}
+.mchip i.c2{background:rgba(244,241,234,.1);opacity:0}
+@media (prefers-reduced-motion:reduce){.ws-t .wt,.ws-cap span,.ws-cap b{transition-duration:.01s}}

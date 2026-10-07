@@ -1,0 +1,52 @@
+.bridge-pin{height:100svh;min-height:620px;display:flex;flex-direction:column;padding-top:calc(var(--nav-h) + 1.5vh);padding-bottom:2.2vh;position:relative}
+.bridge .bridge-head .h2{font-size:clamp(1.9rem,3.7vw,4rem);margin-top:14px}
+.bridge .bridge-head .h2 br{display:none}
+.bridge-stage{flex:1;min-height:0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:stretch;position:relative;margin-block:clamp(14px,2.4vh,28px) clamp(10px,1.6vh,20px);width:100%}
+.b-blocks{grid-column:1 / span 6;border:1px solid var(--line);border-radius:18px;background:var(--panel);position:relative;overflow:hidden;display:grid;place-items:center;
+  background-image:radial-gradient(rgba(244,241,234,.06) 1px,transparent 1px);background-size:22px 22px}
+.b-blocks-in{position:relative;width:100%;height:100%;display:grid;place-items:center;padding:18px 22px}
+.b-blocks-in svg{overflow:visible;position:relative}
+.b-blocks-in svg .b-hl{fill:rgba(255,171,25,.07);stroke:var(--accent);stroke-width:1.5;rx:6;opacity:0;vector-effect:non-scaling-stroke;pointer-events:none}
+.b-blocks-in svg .b-hit{fill:transparent;pointer-events:all;cursor:default}
+.b-code{grid-column:8 / span 5;border:1px solid var(--line);border-radius:18px;background:var(--panel);display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.b-code-bar{display:flex;justify-content:space-between;align-items:center;height:40px;padding:0 14px 0 16px;border-bottom:1px solid var(--line);font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+.fold-btn{font-family:var(--f-mono);font-size:10.5px;color:var(--ink-3);border:1px solid var(--line);border-radius:99px;padding:3px 10px;transition:color .3s,border-color .3s}
+.fold-btn:hover{color:var(--ink);border-color:var(--line-2)}
+.b-code-pre,.code-pre{margin:0;font-family:var(--f-mono);font-size:clamp(11.5px,.95vw,14px);line-height:1.75;color:var(--ink-2);overflow:auto;padding:14px 0;white-space:pre;tab-size:4;flex:1;min-height:0}
+.dl{display:flex;position:relative;padding-right:16px;transition:background .35s,opacity .35s;border-left:2px solid transparent}
+.dl .gn{flex:0 0 38px;text-align:right;padding-right:14px;color:var(--ink-3);opacity:.55;user-select:none}
+.dl .gt{flex:1;white-space:pre}
+.dl.is-at.is-folded{display:none}
+.dl.is-at .gt{opacity:.55}
+.dl.is-future{opacity:.22}
+.dl.is-on{background:linear-gradient(90deg,rgba(255,171,25,.16),rgba(255,171,25,.04));border-left-color:var(--accent);color:var(--ink)}
+.dl.is-pair{background:rgba(255,171,25,.07);border-left-color:var(--accent-line)}
+.t-k{color:var(--syn-kw)}.t-s{color:var(--syn-str)}.t-n{color:var(--syn-num)}.t-c{color:var(--syn-com);font-style:normal}.t-d{color:var(--ink-3)}.t-ns{color:var(--ink)}.t-p{color:var(--ink-3)}.t-i{color:var(--accent)}
+.b-links{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:2}
+.b-links path{fill:none;stroke:var(--accent);stroke-width:1.25;stroke-linecap:round;opacity:.9}
+.b-links circle{fill:var(--accent)}
+.b-links .ghost{stroke-dasharray:2 5;opacity:.25}
+.bridge-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;min-height:56px}
+.badges{display:flex;flex-wrap:wrap;gap:8px 10px}
+.badges li{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;color:var(--ink);padding:7px 14px 7px 11px;border:1px solid var(--accent-line);border-radius:99px;background:rgba(255,171,25,.06);opacity:0}
+.badges li svg{width:13px;height:13px;flex:none}
+.badges li svg path{stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.fine{font-size:12px;color:var(--ink-3);line-height:1.6}
+
+.b-prog{position:absolute;left:var(--gutter);right:var(--gutter);bottom:0;height:1px;background:var(--line)}
+.b-prog i{display:block;height:100%;background:var(--accent);transform-origin:left;transform:scaleX(0)}
+
+@media (max-width:860px){
+  .bridge-pin{min-height:0;padding-top:calc(var(--nav-h) + 6px)}
+  .bridge-stage{display:flex;flex-direction:column;gap:12px;margin-block:12px 8px}
+  .b-blocks{flex:0 0 44%;min-height:0}
+  .b-blocks-in{padding:10px}
+  .b-code{flex:1}
+  .b-links{display:none}
+  .b-code-pre{font-size:11px;line-height:1.7}
+  .bridge-foot{flex-direction:column;align-items:flex-start;gap:6px;min-height:0}
+  .bridge-foot .fine{text-align:left;display:none}
+  .badges li{font-size:11px;padding:5px 10px 5px 8px}
+}
+
+.b-code-foot{padding:12px 16px 14px;border-top:1px solid var(--line);font-size:11.5px;margin:0}
