@@ -1,5 +1,5 @@
-/* Section 06 cases, rendered from records.json (inlined into data.generated.js).
-   First record = main showcase (big stage with slides + click-to-load video); the rest = "更多案例" grid (hidden when empty). */
+/* Phần 06: Các ca điển hình / dự án thực tế (cases), được render từ records.json (nhúng nội tuyến vào data.generated.js).
+   Bản ghi đầu tiên = showcase chính (sân khấu lớn với slide + video click-để-tải); các bản ghi còn lại = lưới "Dự án khác" (ẩn đi nếu trống). */
 (function () {
   var GC = window.GC;
   var E = GC.escape;
@@ -24,20 +24,20 @@
       stage = '<div class="show-main"><div class="show-stage"' + (r.aspect ? ' style="--ar:' + E(r.aspect) + '"' : '') + '><div class="show-slides">' +
         slides.map(function (s, i) { return '<img src="' + E(s.src) + '" alt="' + E(s.alt || r.title) + '"' + (i ? ' loading="lazy"' : '') + ' class="' + (i === 0 ? 'on' : '') + (s.ui ? ' ui' : '') + '" data-cap="' + E(s.cap || '') + '" decoding="async">'; }).join('') +
         '</div><div class="show-cap" aria-live="polite">' + E(slides[0].cap || '') + '</div>' +
-        (v && v.embedUrl ? '<button type="button" class="show-play" aria-label="加载并播放演示视频"><i></i>观看演示视频' + (v.duration ? '<small>' + E(v.duration) + '</small>' : '') + '</button>' : '') +
-        '<div class="show-fallback" role="status"><p>视频播放器没能在这里加载。<br><a class="ulink" href="' + E((v && v.pageUrl) || '#') + '" target="_blank" rel="noopener noreferrer">在 B 站观看 ↗</a></p></div></div>' +
-        (slides.length > 1 ? '<div class="show-thumbs" role="group" aria-label="截图">' + slides.map(function (s, i) {
-          return '<button type="button" aria-label="第 ' + (i + 1) + ' 张截图"' + (i === 0 ? ' aria-current="true"' : '') + '><img src="' + E(s.thumb || s.src) + '" alt="" loading="lazy"></button>';
+        (v && v.embedUrl ? '<button type="button" class="show-play" aria-label="Tải và phát video demo"><i></i>Xem video demo' + (v.duration ? '<small>' + E(v.duration) + '</small>' : '') + '</button>' : '') +
+        '<div class="show-fallback" role="status"><p>Không thể tải trình phát video tại đây.<br><a class="ulink" href="' + E((v && v.pageUrl) || '#') + '" target="_blank" rel="noopener noreferrer">Xem trên Bilibili ↗</a></p></div></div>' +
+        (slides.length > 1 ? '<div class="show-thumbs" role="group" aria-label="Ảnh chụp màn hình">' + slides.map(function (s, i) {
+          return '<button type="button" aria-label="Ảnh chụp màn hình thứ ' + (i + 1) + '"' + (i === 0 ? ' aria-current="true"' : '') + '><img src="' + E(s.thumb || s.src) + '" alt="" loading="lazy"></button>';
         }).join('') + '</div>' : '') + '</div>';
     }
-    var body = '<div class="show-body"><p class="case-label">' + (first ? '<b>真实案例</b>' : '') + (r.tag ? '<span>' + E(r.tag) + '</span>' : '') + '</p><h3>' + E(r.title) + '</h3>' +
+    var body = '<div class="show-body"><p class="case-label">' + (first ? '<b>Dự án thực tế</b>' : '') + (r.tag ? '<span>' + E(r.tag) + '</span>' : '') + '</p><h3>' + E(r.title) + '</h3>' +
       (r.text ? '<p class="t">' + E(r.text) + '</p>' : '') +
       (r.credit ? '<p class="credit">' + E(r.credit) + '</p>' : '') +
-      (r.prompt ? '<blockquote class="show-prompt"><span>一句话</span>' + E(r.prompt) + '</blockquote>' : '') +
-      (r.author ? '<p class="by">作者：' + E(r.author) + '</p>' : '') +
+      (r.prompt ? '<blockquote class="show-prompt"><span>Một câu tóm tắt</span>' + E(r.prompt) + '</blockquote>' : '') +
+      (r.author ? '<p class="by">Tác giả: ' + E(r.author) + '</p>' : '') +
       stats(r) + (r.fine ? '<p class="fine case-fine">' + E(r.fine) + '</p>' : '') +
-      (v && v.pageUrl ? '<a class="ulink case-link" href="' + E(v.pageUrl) + '" target="_blank" rel="noopener noreferrer">在 B 站观看 ↗</a>' :
-        (r.link && r.link.href ? '<a class="ulink case-link" href="' + E(r.link.href) + '" target="_blank" rel="noopener noreferrer">' + E(r.link.label || '查看') + ' ↗</a>' : '')) +
+      (v && v.pageUrl ? '<a class="ulink case-link" href="' + E(v.pageUrl) + '" target="_blank" rel="noopener noreferrer">Xem trên Bilibili ↗</a>' :
+        (r.link && r.link.href ? '<a class="ulink case-link" href="' + E(r.link.href) + '" target="_blank" rel="noopener noreferrer">' + E(r.link.label || 'Xem chi tiết') + ' ↗</a>' : '')) +
       '</div>';
     return '<article class="show" data-reveal>' + stage + body + '</article>';
   }
@@ -84,7 +84,7 @@
     var D = window.GC_DATA, recs = (D && D.records) || [], host = GC.qs('#cases');
     if (!host || !recs.length) return;
     var out = html(recs[0], true);
-    if (recs.length > 1) out += '<div class="more-cases"><p class="case-label"><b>更多案例</b></p><div class="more-grid">' + recs.slice(1).map(function (r) { return html(r, false); }).join('') + '</div></div>';
+    if (recs.length > 1) out += '<div class="more-cases"><p class="case-label"><b>Dự án khác</b></p><div class="more-grid">' + recs.slice(1).map(function (r) { return html(r, false); }).join('') + '</div></div>';
     host.innerHTML = out;
     GC.qsa('.show', host).forEach(function (el, i) { wire(el, i === 0 ? recs[0] : recs[i]); });
   });

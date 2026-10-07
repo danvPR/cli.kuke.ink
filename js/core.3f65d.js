@@ -1,5 +1,5 @@
-/* core: smooth scroll, ticker, nav, progress, intro, small helpers.
-   Plain scripts (no modules) so the site works from file://. */
+/* phần cốt lõi: cuộn mượt (smooth scroll), ticker, thanh điều hướng (nav), tiến trình, màn intro, các hàm bổ trợ nhỏ.
+   Script thuần (không dùng module) để trang web có thể chạy trực tiếp từ giao thức file://. */
 (function () {
   var GC = (window.GC = window.GC || {});
   var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -11,7 +11,7 @@
   GC.register = function (fn) { GC.inits.push(fn); };
   GC.escape = function (s) { return String(s).replace(/[&<>]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }); };
 
-  /* own line splitter: words -> measured lines -> masked line spans. Keeps <em>/<br>. */
+  /* bộ tách dòng tự viết: từ -> đo đạc các dòng -> bọc các thẻ span cho từng dòng. Giữ lại thẻ <em>/<br>. */
   GC.splitLines = function (el) {
     if (el.__split) return el.__split;
     var label = el.textContent.replace(/\s+/g, ' ').trim();
@@ -54,7 +54,7 @@
     return el.__split;
   };
 
-  /* SVG-safe spring drop: uses CSS individual transform props so the element's own transform attribute survives */
+  /* hiệu ứng rơi đàn hồi an toàn cho SVG: dùng các thuộc tính CSS transform riêng lẻ để giữ nguyên thuộc tính transform sẵn có của phần tử */
   GC.dropIn = function (el, o) {
     o = o || {};
     gsap.killTweensOf(el); if (el.__dt) el.__dt.kill();
@@ -68,7 +68,7 @@
   GC.killDrop = function (el) { if (el.__dt) { el.__dt.kill(); el.__dt = null; } gsap.killTweensOf(el); };
   GC.hideSvg = function (el) { el.style.opacity = '0'; };
 
-  // font preload only over http(s): a crossorigin preload is blocked on file://
+  // chỉ preload font qua giao thức http(s): việc preload có thuộc tính crossorigin sẽ bị chặn trên file://
   if (/^https?:/.test(location.protocol)) {
     ['inter-tight-latin-500-normal', 'instrument-serif-latin-400-italic'].forEach(function (n) {
       var l = document.createElement('link');
@@ -97,7 +97,7 @@
       else { var el = typeof target === 'string' ? GC.qs(target) : target; if (el) el.scrollIntoView(); }
     };
 
-    /* anchors */
+    /* liên kết neo (anchor links) */
     GC.qsa('a[href^="#"]').forEach(function (a) {
       a.addEventListener('click', function (e) {
         var id = a.getAttribute('href');
@@ -108,14 +108,14 @@
       });
     });
 
-    /* progress line */
+    /* thanh hiển thị tiến trình cuộn */
     var bar = GC.qs('.progress');
     if (bar) {
       var setP = gsap.quickSetter(bar, 'scaleX');
       ScrollTrigger.create({ start: 0, end: 'max', onUpdate: function (s) { setP(s.progress); } });
     }
 
-    /* nav hide / show / solid */
+    /* ẩn / hiện / làm đặc nền thanh điều hướng (nav) */
     var nav = GC.qs('.nav'), lastY = 0;
     ScrollTrigger.create({
       start: 0, end: 'max',
@@ -134,7 +134,7 @@
         onToggle: function (s) { a.classList.toggle('is-on', s.isActive); } });
     });
 
-    /* magnetic elements: lerped, <=10px */
+    /* hiệu ứng hút nam châm (magnetic elements): dùng lerp, biên độ <=10px */
     if (!GC.reduced && window.matchMedia('(hover: hover)').matches) {
       GC.qsa('[data-magnetic]').forEach(function (el) {
         var tx = 0, ty = 0, cx = 0, cy = 0, run = false;
@@ -157,7 +157,7 @@
       });
     }
 
-    /* copy buttons */
+    /* các nút sao chép (copy) */
     GC.qsa('[data-copy]').forEach(function (b) {
       b.addEventListener('click', function () {
         var txt = b.getAttribute('data-copy');
@@ -166,7 +166,7 @@
           if (!b.__orig) b.__orig = lab.textContent;
           b.classList.add('is-copied');
           gsap.fromTo(lab, { yPercent: 60, opacity: 0 }, { yPercent: 0, opacity: 1, duration: .5, ease: 'expo.out' });
-          lab.textContent = '已复制';
+          lab.textContent = 'Đã sao chép'; // Đã dịch từ '已复制'
           clearTimeout(b.__t);
           b.__t = setTimeout(function () {
             gsap.fromTo(lab, { yPercent: 60, opacity: 0 }, { yPercent: 0, opacity: 1, duration: .5, ease: 'expo.out' });
@@ -182,7 +182,7 @@
       });
     });
 
-    /* pause offscreen things */
+    /* tạm dừng các phần tử nằm ngoài màn hình hiển thị */
     GC.visible = function (el, on, off) {
       var io = new IntersectionObserver(function (es) { es.forEach(function (e) { e.isIntersecting ? on() : off && off(); }); }, { rootMargin: '10% 0px' });
       io.observe(el); return io;
@@ -231,7 +231,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     var go = function () { GC.init(); };
     if (document.fonts && document.fonts.ready) {
-      // don't wait forever on fonts
+      // không chờ font tải quá lâu (timeout tối đa 1.2s)
       Promise.race([document.fonts.ready, new Promise(function (r) { setTimeout(r, 1200); })]).then(go);
     } else go();
   });

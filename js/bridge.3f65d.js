@@ -10,10 +10,12 @@
     var foldBtn = GC.qs('#fold-btn'), progI = GC.qs('#b-prog-i');
     var mobile = GC.mobile();
 
-    GC.qs('#b-code-name').textContent = name + '.dsl · 示例程序';
+    // name + '.dsl · 示例程序' -> Chương trình mẫu
+    GC.qs('#b-code-name').textContent = name + '.dsl · Chương trình mẫu';
     var svg = GC.svgInto(blocksIn, name);
     var vb = svg.viewBox.baseVal;
-    // sizing: fit panel
+    
+    // Điều chỉnh kích thước: vừa với khung panel
     function fit() {
       var pw = panel.clientWidth - 44, ph = panel.clientHeight - 36;
       var s = Math.min(pw / vb.width, ph / vb.height, 1.9);
@@ -23,13 +25,14 @@
 
     GC.renderCode(pre, D.dsl);
     var lineEls = {}; GC.qsa('.dl', pre).forEach(function (d) { lineEls[d.getAttribute('data-n')] = d; });
-    // own lines + line->step
+    
+    // Các dòng riêng + liên kết dòng -> bước (line -> step)
     var lineStep = {};
     marks.forEach(function (m) { m.own = GC.ownLines(marks, m); m.own.forEach(function (l) { lineStep[l] = m.step; }); });
     var blockEl = {};
     marks.forEach(function (m) { blockEl[m.id] = svg.querySelector('[data-bid="' + m.id + '"]'); });
 
-    // overlay highlight + hit regions
+    // Lớp phủ nổi bật (overlay highlight) + vùng tương tác (hit regions)
     var hl = document.createElementNS(NS, 'rect'); hl.setAttribute('class', 'b-hl'); svg.appendChild(hl);
     var hits = marks.slice().sort(function (a, b) { return b.svgBBox.w * b.svgBBox.h - a.svgBBox.w * a.svgBBox.h; }).map(function (m) {
       var r = document.createElementNS(NS, 'rect'); r.setAttribute('class', 'b-hit');
@@ -41,25 +44,25 @@
       gsap.to(hl, { attr: { x: b.x - 3, y: b.y - 3, width: b.w + 6, height: b.h + 6 }, opacity: 1, duration: animate ? 0.55 : 0, ease: 'power3.out', overwrite: true });
     }
 
-    // badges
+    // Huy hiệu / Thẻ thông tin (badges)
     var v = D.verify;
     var items = [
-      '编译零诊断',
-      '往返 ' + v.roundTrips + ' 次 · 积木表逐字段一致',
+      'Biên dịch không lỗi/cảnh báo',
+      'Chuyển đổi 2 chiều ' + v.roundTrips + ' lần · Bảng khối lệnh khớp từng trường',
       v.printedTextIdentical,
-      '带底重编逐字节还原'
+      'Biên dịch lại từ gốc khôi phục chính xác từng byte'
     ];
     if (!v.blockTableIdenticalEveryRound) items.splice(1, 1);
     if (!v.basedRebuildByteIdentical) items.pop();
     if (v.compileDiagnostics !== 0) items.shift();
-    items.push('286 个测试目标 · 0 差异');
+    items.push('286 mục tiêu thử nghiệm · 0 sai lệch');
     badgesEl.innerHTML = items.map(function (t) {
       return '<li><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5l3 3 6-7"/></svg>' + GC.escape(t) + '</li>';
     }).join('');
-    GC.qs('#b-fine').textContent = '示例程序，数字来自这段程序的真实往返验证。286 为 scratch-vm 测试语料中的角色与舞台目标数（积木→文本→积木），不是作品数。写法像 JavaScript，但只描述积木，从不被执行。';
+    GC.qs('#b-fine').textContent = 'Chương trình mẫu, các con số đến từ việc xác minh chuyển đổi hai chiều thực tế của đoạn mã này. 286 là số lượng nhân vật và sân khấu trong bộ ngữ liệu kiểm thử scratch-vm (Khối lệnh → Văn bản → Khối lệnh), không phải số lượng dự án. Cú pháp trông giống JavaScript nhưng chỉ dùng để mô tả các khối lệnh và không bao giờ được thực thi trực tiếp.';
     var badgeLis = GC.qsa('li', badgesEl), badgesOn = false;
 
-    // links
+    // Đường nối liên kết (links)
     var linkPath = null, linkDot = null, linkGhost = null, curLink = null;
     var linkTw = null;
     function clearLinks() { if (linkTw) { linkTw.kill(); linkTw = null; } while (linksSvg.firstChild) linksSvg.removeChild(linksSvg.firstChild); linkPath = linkDot = linkGhost = null; }
@@ -96,7 +99,7 @@
       curLink = m;
     }
 
-    var cur = -1; // step 0..N (N = all revealed, nothing highlighted); -1 = unset
+    var cur = -1; // Bước từ 0..N (N = đã hiển thị tất cả, không tô sáng khối nào); -1 = chưa thiết lập
     function setStep(k, animate) {
       if (k === cur) return;
       var prev = cur; cur = k;
@@ -118,18 +121,19 @@
       });
       if (active) { placeHl(active, animate); drawLink(active, animate); }
       else { gsap.to(hl, { opacity: 0, duration: 0.4, overwrite: true }); clearLinks(); curLink = null; }
-      // badges
+      
+      // Huy hiệu (badges)
       var showB = k > N;
       if (showB !== badgesOn) {
         badgesOn = showB;
         if (showB) gsap.fromTo(badgeLis, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.7, stagger: 0.09, ease: 'expo.out', overwrite: true });
         else gsap.to(badgeLis, { opacity: 0, y: 6, duration: 0.25, overwrite: true });
       }
-      // scroll the code panel to keep the active line visible
+      // Tự động cuộn khung mã nguồn để giữ cho dòng đang kích hoạt luôn hiển thị
       if (active) { var le = lineEls[active.own[0]]; if (le && pre.scrollHeight > pre.clientHeight) pre.scrollTo({ top: Math.max(0, le.offsetTop - pre.clientHeight / 2), behavior: 'smooth' }); }
     }
 
-    // hover pairing
+    // Ghép cặp khi di chuột (hover pairing)
     function pairFor(m) {
       if (!m || m.step > cur) return;
       hoverM = m;
@@ -161,19 +165,19 @@
     function applyFold() {
       GC.qsa('.is-at', pre).forEach(function (d) { d.classList.toggle('is-folded', folded); });
       GC.renumber(pre); foldBtn.setAttribute('aria-pressed', String(!folded));
-      foldBtn.textContent = folded ? '显示 @at 位置行' : '折叠 @at 位置行';
+      foldBtn.textContent = folded ? 'Hiện các dòng vị trí @at' : 'Thu gọn các dòng vị trí @at';
       if (cur >= 1 && cur <= N) drawLink(marks[cur - 1], false);
     }
     foldBtn.onclick = function () { folded = !folded; applyFold(); };
     applyFold();
 
-    // initial: nothing revealed
+    // Khởi tạo ban đầu: chưa hiển thị gì cả
     marks.forEach(function (m) { if (blockEl[m.id]) { blockEl[m.id].__vis = false; gsap.set(blockEl[m.id], { opacity: 0 }); } });
     Object.keys(lineEls).forEach(function (n) { lineEls[n].classList.toggle('is-future', (lineStep[n] || 0) > 0); });
     gsap.set(badgeLis, { opacity: 0 });
     cur = 0;
 
-    // scroll driver
+    // Trình điều khiển cuộn trang (scroll driver)
     var steps = N + 1;
     var st = ScrollTrigger.create({
       trigger: '#bridge-pin', start: 'top top', end: function () { return '+=' + Math.round(innerHeight * (GC.reduced ? 0.6 : 0.62) * steps); },
@@ -187,7 +191,8 @@
     });
     var onResize = function () { fit(); if (curLink && cur >= 1 && cur <= N) { placeHl(marks[cur - 1], false); drawLink(marks[cur - 1], false); } };
     var ro = new ResizeObserver(onResize); ro.observe(panel); ro.observe(stage);
-    // expose for probes
+    
+    // Xuất ra ngoài để phục vụ kiểm tra/debug
     GC.bridge = { setStep: setStep, N: N, steps: steps, trigger: st };
 
     return function () { ro.disconnect(); st.kill(); clearLinks(); };
